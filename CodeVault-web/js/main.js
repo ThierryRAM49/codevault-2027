@@ -540,7 +540,7 @@ const LandingPage = () => {
         React.createElement('a', { key: 'd', href: 'https://devops.riad-design.cloud/', target: '_blank', rel: 'noopener', className: linkCls }, '🛠️ OUTIL DEVOPS →')
       ]),
       React.createElement('h1', { className: 'text-5xl font-black flex flex-col items-center gap-2' }, [
-        React.createElement('img', { key: 'e', src: './assets/icon.png', alt: 'CodeVaultAI', className: 'w-16 h-16 rounded-2xl' }),
+        React.createElement('img', { key: 'e', src: './assets/icon.png', alt: 'CodeVaultAI', className: 'w-28 h-28 rounded-3xl' }),
         React.createElement('span', { key: 't', className: 'flex items-center gap-2' }, [
           '🔐',
           React.createElement(HologramLogo, { key: 'l', text: 'CodeVaultAI' })
