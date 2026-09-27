@@ -70,9 +70,8 @@ and we lean on **NVIDIA's open-source models** hosted there:
   **Nebius AI Studio** (`https://api.studio.nebius.ai/v1`).
 - Any Nebius AI Studio model can be selected from the assistant's settings (⚙️),
   e.g. NVIDIA Nemotron, Qwen-Coder, DeepSeek.
-- **Nebius Token Factory** was used to accelerate our workflow during development —
-  fast token generation / model inference while iterating on prompts and features,
-  which let us test and ship the AI features far quicker than running models locally.
+- **Nebius Token Factory** — on our roadmap: we plan to adopt its fast token/inference
+  endpoints to accelerate prompt iteration and model serving in the next iterations.
 - The assistant also auto-detects a **local** AI server (Ollama, LM Studio, llama.cpp…)
   so the app still works fully offline.
 
