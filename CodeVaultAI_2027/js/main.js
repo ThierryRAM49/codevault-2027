@@ -397,6 +397,7 @@ const EditModal = ({ snippet, onSave, onCancel, themes }) => {
 const App = () => {
   const [userRole, setUserRole] = React.useState(null); // 'admin' | 'user' | null
   const [password, setPassword] = React.useState(''); // Token Input
+  const [localToken, setLocalToken] = React.useState('');
   const [loginError, setLoginError] = React.useState('');
   const [snippets, setSnippets] = React.useState([]);
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -532,6 +533,17 @@ const App = () => {
     }
   }, []);
 
+  // Affiche le token admin local sur l'écran de login (app de bureau mono-utilisateur)
+  React.useEffect(() => {
+    if (!window.electronAPI || !window.electronAPI.getTokens) return;
+    window.electronAPI.getTokens()
+      .then((tokens) => {
+        const admin = (tokens || []).find((t) => t.is_active && t.role === 'admin');
+        if (admin && admin.token) setLocalToken(admin.token);
+      })
+      .catch(() => {});
+  }, []);
+
   // Helper pour sécuriser les données (parsing tags)
   const processSnippets = (rawSnippets) => {
     return rawSnippets.map(s => {
@@ -639,7 +651,17 @@ const App = () => {
       React.createElement('button', {
         onClick: () => handleLogin(),
         className: 'px-6 py-2 bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-500 text-white rounded font-bold uppercase tracking-wider shadow-lg'
-      }, '🔑 AUTHORIZE')
+      }, '🔑 AUTHORIZE'),
+      localToken && React.createElement('div', { className: 'mt-6 p-3 bg-slate-800/80 border border-cyan-500/40 rounded-lg w-80 text-left' }, [
+        React.createElement('p', { className: 'text-xs text-gray-400 mb-1' }, 'Token admin local :'),
+        React.createElement('div', { className: 'flex items-center gap-2' }, [
+          React.createElement('code', { className: 'flex-1 text-cyan-300 font-mono text-sm break-all select-all' }, localToken),
+          React.createElement('button', {
+            onClick: () => { setPassword(localToken); setLoginError(''); },
+            className: 'text-xs px-2 py-1 border border-cyan-500/50 text-cyan-300 rounded hover:bg-cyan-500/20'
+          }, 'Utiliser')
+        ])
+      ])
     ]);
   }
 
@@ -969,6 +991,10 @@ const App = () => {
       React.createElement('div', { className: 'flex gap-3 flex-wrap items-center' }, [
         // LOGOUT BUTTON
         React.createElement('button', { onClick: handleLogout, className: 'border border-red-500/30 bg-red-900/10 text-red-400 hover:bg-red-500/20 px-3 py-2 rounded-lg font-bold text-xs transition-all backdrop-blur-sm', title: 'Déconnexion' }, '🔓 LOGOUT'),
+
+        // PROJETS LINKS
+        React.createElement('button', { onClick: () => window.electronAPI.openExternal('https://portfolio.riad-design.cloud/'), className: 'border border-cyan-500/50 bg-cyan-900/10 text-cyan-300 hover:bg-cyan-500/20 px-4 py-2 rounded-lg font-bold text-sm transition-all backdrop-blur-sm', title: 'Mon Portfolio' }, '👤 PORTFOLIO'),
+        React.createElement('button', { onClick: () => window.electronAPI.openExternal('https://devops.riad-design.cloud/'), className: 'border border-cyan-500/50 bg-cyan-900/10 text-cyan-300 hover:bg-cyan-500/20 px-4 py-2 rounded-lg font-bold text-sm transition-all backdrop-blur-sm', title: 'Outil DEVOPS' }, '🛠️ DEVOPS'),
 
         // ADMIN TOKEN BUTTON
         userRole === 'admin' && React.createElement('button', { onClick: () => window.electronAPI.openAdminPanel(), className: 'border border-red-500/50 bg-red-900/20 text-red-300 hover:bg-red-500/20 px-4 py-2 rounded-lg font-bold text-sm transition-all animate-pulse' }, '🛡️ TOKENS'),

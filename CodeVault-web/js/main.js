@@ -465,6 +465,100 @@ const EditModal = ({ snippet, onSave, onCancel, themes }) => {
 };
 
 
+const DEMO_EXAMPLES = {
+  JS: 'var total = 10\nif (total == 10) {\n  console.log("debug leftover")\n}',
+  TYPESCRIPT: 'function greet(name: any) {\n  var msg = "Hello, " + name\n  console.log(msg)\n}',
+  PYTHON: 'import *\n\ndef divide(a, b):\n    print("debug", a, b)\n    try:\n        return a / b\n    except:\n        return None',
+  PHP: '<?php\nfunction getUser($id) {\n    $result = mysql_query("SELECT * FROM users WHERE id = " . $id);\n    if ($result == null) {\n        var_dump("no user found");\n    }\n    return $result;\n}',
+  JSON: '{\n  "name": "demo",\n  "tags": ["a", "b",],\n}',
+  CSS: '.card {\n  color: red\n  background: #zzz;\n  font-size: 14px !important;\n}',
+  HTML: '<div>\n  <img src="x.png">\n  <button onclick="doThing()">Go</button>\n</div>'
+};
+const DEMO_LANGS = [['JS', 'JavaScript'], ['TYPESCRIPT', 'TypeScript'], ['PYTHON', 'Python'], ['PHP', 'PHP'], ['JSON', 'JSON'], ['CSS', 'CSS'], ['HTML', 'HTML']];
+const DEMO_BEAUTIFY_SUPPORTED = { JS: true, TYPESCRIPT: true, JSON: true, CSS: true };
+
+const LandingPage = () => {
+  const [lang, setLang] = React.useState('JS');
+  const [code, setCode] = React.useState(DEMO_EXAMPLES.JS);
+  const [findings, setFindings] = React.useState([]);
+  const [notice, setNotice] = React.useState('');
+
+  const findingsRows = (items, cls, icon) => (items || []).map((f, i) =>
+    React.createElement('p', { key: cls + i, className: cls }, `${icon} Ligne ${f.line}: ${f.message}`));
+
+  const analyze = () => {
+    setNotice('');
+    if (!window.CodeAnalyzer) return;
+    const r = window.CodeAnalyzer.analyze(code, lang);
+    const rows = [
+      ...findingsRows(r.errors, 'text-red-400', '❌'),
+      ...findingsRows(r.warnings, 'text-amber-300', '⚠️'),
+      ...findingsRows(r.suggestions, 'text-cyan-300', '💡')
+    ];
+    setFindings(rows);
+    if (rows.length === 0) setNotice('✅ Aucun problème détecté !');
+  };
+  const autoFix = () => {
+    setNotice('');
+    if (!window.CodeAnalyzer) return;
+    const r = window.CodeAnalyzer.autoFix(code, lang);
+    setCode(r.code);
+    setFindings((r.fixes || []).map((f, i) => React.createElement('p', { key: i, className: 'text-green-300' }, '✅ ' + f)));
+    if (!r.fixes || r.fixes.length === 0) setNotice('Rien à corriger automatiquement pour ce langage.');
+  };
+  const format = () => {
+    setNotice('');
+    if (!DEMO_BEAUTIFY_SUPPORTED[lang]) { setNotice("⚠️ Le formatage automatique n'est pas disponible pour ce langage."); return; }
+    if (!window.CodeBeautifier) return;
+    setCode(window.CodeBeautifier.beautify(code, lang));
+    setFindings([]);
+    setNotice('✨ Code reformaté.');
+  };
+
+  const linkCls = 'border border-cyan-500/50 bg-cyan-900/10 text-cyan-300 hover:bg-cyan-500/20 px-4 py-2 rounded-lg font-bold text-sm transition-all backdrop-blur-sm inline-flex items-center';
+
+  return React.createElement('div', { className: 'p-6 min-h-screen' }, [
+    React.createElement('div', { className: 'max-w-5xl mx-auto' }, [
+      React.createElement('div', { className: 'flex flex-wrap justify-end gap-3 mb-8' }, [
+        React.createElement('a', { key: 'p', href: 'https://portfolio.riad-design.cloud/', target: '_blank', rel: 'noopener', className: linkCls }, '👤 MON PORTFOLIO →'),
+        React.createElement('a', { key: 'd', href: 'https://devops.riad-design.cloud/', target: '_blank', rel: 'noopener', className: linkCls }, '🛠️ OUTIL DEVOPS →')
+      ]),
+      React.createElement('h1', { className: 'text-5xl font-black flex items-center gap-3 justify-center' }, [
+        React.createElement('span', { key: 'e', 'aria-hidden': 'true' }, '🔐'),
+        React.createElement(HologramLogo, { key: 'l', text: 'CodeVaultAI' })
+      ]),
+      React.createElement('p', { className: 'text-center text-cyan-200/70 mt-3 mb-10 font-mono text-sm tracking-widest uppercase' }, 'Le coffre-fort de vos snippets de code'),
+      React.createElement('div', { className: 'bg-black/30 backdrop-blur-md border border-cyan-500/15 rounded-2xl p-6 mb-8' }, [
+        React.createElement('h2', { className: 'text-xl font-bold text-white mb-2' }, '🧪 Essayez en direct'),
+        React.createElement('p', { className: 'text-sm text-cyan-200/60 mb-4' }, "Le vrai moteur d'analyse de CodeVaultAI — sans compte, sans envoi au serveur."),
+        React.createElement('div', { className: 'flex items-center gap-3 mb-3' }, [
+          React.createElement('label', { className: 'text-sm text-gray-400' }, 'Langage :'),
+          React.createElement('select', {
+            value: lang,
+            onChange: (e) => { const l = e.target.value; setLang(l); setCode(DEMO_EXAMPLES[l] || ''); setFindings([]); setNotice(''); },
+            className: 'bg-black/50 border border-cyan-900/50 rounded-lg text-cyan-100 px-3 py-2 text-sm focus:border-cyan-400 outline-none'
+          }, DEMO_LANGS.map(([v, label]) => React.createElement('option', { key: v, value: v }, label)))
+        ]),
+        React.createElement('textarea', {
+          value: code, spellCheck: false,
+          onChange: (e) => { setCode(e.target.value); setFindings([]); setNotice(''); },
+          className: 'w-full min-h-[140px] bg-black/50 border border-cyan-900/50 rounded-lg text-slate-200 p-3 font-mono text-sm resize-y focus:border-cyan-400 outline-none mb-3'
+        }),
+        React.createElement('div', { className: 'flex gap-3 flex-wrap' }, [
+          React.createElement('button', { key: 'a', onClick: analyze, className: 'px-4 py-2 rounded-lg font-bold text-sm text-white bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500' }, '🔍 Analyser'),
+          React.createElement('button', { key: 'f', onClick: autoFix, className: 'px-4 py-2 rounded-lg font-bold text-sm border border-cyan-500/50 text-cyan-300 hover:bg-cyan-500/10' }, '🔧 Auto-Fix'),
+          React.createElement('button', { key: 'm', onClick: format, className: 'px-4 py-2 rounded-lg font-bold text-sm border border-cyan-500/50 text-cyan-300 hover:bg-cyan-500/10' }, '✨ Formater')
+        ]),
+        (notice || findings.length > 0) && React.createElement('div', { className: 'mt-4 text-sm space-y-1' }, [
+          notice && React.createElement('p', { key: 'n', className: 'text-green-300' }, notice),
+          findings
+        ])
+      ]),
+      React.createElement('p', { className: 'text-center text-sm text-cyan-200/50' }, "🔒 L'accès complet (coffre, éditeur Monaco, assistant IA) se fait via l'application de bureau.")
+    ])
+  ]);
+};
+
 const App = () => {
   const [userRole, setUserRole] = React.useState(null); // 'admin' | 'user' | null
   const [password, setPassword] = React.useState(''); // Token Input
@@ -732,27 +826,7 @@ const App = () => {
   const themes = ['Général', 'Sécurité', 'Backend', 'Algo', 'Frontend', 'DevOps'];
 
   if (!userRole) {
-    return React.createElement('div', { className: 'p-8 text-center bg-slate-900 min-h-screen flex flex-col items-center justify-center' }, [
-      React.createElement('h1', { className: 'text-3xl font-bold mb-6 flex items-center justify-center gap-2 text-cyan-400' }, [
-        '🔐',
-        React.createElement(HologramLogo, { key: 'logo', text: 'CodeVaultAI_2027' })
-      ]),
-      React.createElement('p', { className: 'text-gray-300 mb-6' }, 'Veuillez entrer votre Token d\'accès'),
-      loginError && React.createElement('p', { className: 'text-red-500 mb-4 font-bold animate-pulse' }, loginError),
-      React.createElement('input', {
-        type: 'password',
-        value: password,
-        autoFocus: true,
-        onChange: (e) => { setPassword(e.target.value); setLoginError(''); },
-        onKeyDown: (e) => e.key === 'Enter' && handleLogin(),
-        placeholder: 'Token d\'accès (Admin/User)',
-        className: 'p-2 bg-slate-700 text-white rounded mb-4 w-80 text-center focus:ring-2 focus:ring-cyan-500 outline-none font-mono tracking-wider'
-      }),
-      React.createElement('button', {
-        onClick: () => handleLogin(),
-        className: 'px-6 py-2 bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-500 text-white rounded font-bold uppercase tracking-wider shadow-lg'
-      }, '🔑 AUTHORIZE')
-    ]);
+    return React.createElement(LandingPage, { key: 'landing' });
   }
 
   async function handleLogin(tokenToUse = null, isAuto = false) {
@@ -1093,11 +1167,10 @@ const App = () => {
         // LOGOUT BUTTON
         React.createElement('button', { onClick: handleLogout, className: 'tap-target border border-red-500/30 bg-red-900/10 text-red-400 hover:bg-red-500/20 px-3 py-2 rounded-lg font-bold text-xs transition-all backdrop-blur-sm', title: 'Déconnexion' }, '🔓 LOGOUT'),
 
-        // DEVOPS LINK
-        React.createElement('a', { href: 'https://devops.riad-design.cloud/', className: 'border border-cyan-500/50 bg-cyan-900/10 text-cyan-300 hover:bg-cyan-500/20 px-4 py-2 rounded-lg font-bold text-sm transition-all backdrop-blur-sm inline-flex items-center' }, '🛠️ DEVOPS'),
+        // PROJETS LINKS
+        React.createElement('a', { href: 'https://portfolio.riad-design.cloud/', target: '_blank', rel: 'noopener', className: 'border border-cyan-500/50 bg-cyan-900/10 text-cyan-300 hover:bg-cyan-500/20 px-4 py-2 rounded-lg font-bold text-sm transition-all backdrop-blur-sm inline-flex items-center' }, '👤 PORTFOLIO'),
+        React.createElement('a', { href: 'https://devops.riad-design.cloud/', target: '_blank', rel: 'noopener', className: 'border border-cyan-500/50 bg-cyan-900/10 text-cyan-300 hover:bg-cyan-500/20 px-4 py-2 rounded-lg font-bold text-sm transition-all backdrop-blur-sm inline-flex items-center' }, '🛠️ DEVOPS'),
 
-        // ADMIN TOKEN BUTTON
-        userRole === 'admin' && React.createElement('button', { onClick: () => window.electronAPI.openAdminPanel(), className: 'tap-target border border-red-500/50 bg-red-900/20 text-red-300 hover:bg-red-500/20 px-4 py-2 rounded-lg font-bold text-sm transition-all animate-pulse' }, '🛡️ TOKENS'),
         React.createElement('button', { onClick: () => setShowChat(!showChat), className: 'tap-target border border-fuchsia-500/50 bg-fuchsia-900/20 text-fuchsia-300 hover:bg-fuchsia-500/20 hover:shadow-[0_0_15px_rgba(217,70,239,0.4)] px-4 py-2 rounded-lg font-bold text-sm transition-all duration-300 backdrop-blur-sm' }, '🤖 LAETITIA'),
         (userRole === 'admin' || userRole === 'user') && React.createElement('label', { className: 'tap-target border border-blue-500/50 bg-blue-900/20 text-blue-300 hover:bg-blue-500/20 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)] px-4 py-2 rounded-lg font-bold cursor-pointer text-sm flex items-center gap-2 transition-all duration-300 backdrop-blur-sm' }, [
           '📥 IMPORT',

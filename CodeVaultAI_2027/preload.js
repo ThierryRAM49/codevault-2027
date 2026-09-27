@@ -14,6 +14,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
   // Window Management
   openSnippetWindow: (id) => ipcRenderer.invoke('open-snippet-window', id),
 
+  // External Links (navigateur par défaut)
+  openExternal: (url) => ipcRenderer.invoke('open-external', url),
+
   // File Operations
   saveSnippets: (snippets) => ipcRenderer.invoke('save-snippets', snippets),
   openSnippets: () => ipcRenderer.invoke('open-snippets'),

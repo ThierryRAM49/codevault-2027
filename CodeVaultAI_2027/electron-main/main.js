@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const Store = require('electron-store');
@@ -353,6 +353,18 @@ app.whenReady().then(() => {
       }
     });
     adminWin.loadFile('admin_panel.html');
+  });
+
+  // OPEN EXTERNAL LINK (navigateur par défaut)
+  ipcMain.handle('open-external', async (event, url) => {
+    try {
+      const parsed = new URL(url);
+      if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+        await shell.openExternal(url);
+        return true;
+      }
+    } catch (e) { /* URL invalide */ }
+    return false;
   });
 
   app.on('activate', () => {

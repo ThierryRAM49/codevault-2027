@@ -188,73 +188,11 @@
     return Array.from(arr, (b) => b.toString(16).padStart(2, '0')).join('');
   }
 
-  function showInitialTokenBanner(token) {
-    const banner = document.createElement('div');
-    banner.style.cssText =
-      'position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;display:flex;align-items:center;justify-content:center;font-family:monospace;padding:16px;';
-    banner.innerHTML = `
-      <div style="max-width:520px;background:#0a0a15;border:1px solid #06b6d4;border-radius:16px;padding:32px;text-align:center;color:#e2e8f0;">
-        <div style="font-size:40px;margin-bottom:12px;">🔐</div>
-        <h2 style="color:#22d3ee;font-size:20px;font-weight:800;margin-bottom:12px;">Votre token d'accès</h2>
-        <p style="font-size:13px;color:#94a3b8;margin-bottom:16px;">Ce vault est propre à ce navigateur : rien n'est envoyé au serveur. Notez ce token précieusement, il ne sera plus jamais affiché — sans lui vous perdrez l'accès à vos snippets.</p>
-        <code id="cvai-initial-token" style="display:block;font-size:22px;color:#67e8f9;background:#000;padding:12px;border-radius:8px;margin-bottom:16px;user-select:all;">${token}</code>
-        <button id="cvai-initial-token-copy" style="background:linear-gradient(90deg,#0891b2,#2563eb);color:#fff;border:none;padding:10px 24px;border-radius:8px;font-weight:700;cursor:pointer;">Copier et continuer</button>
-      </div>
-    `;
-    document.body.appendChild(banner);
-    banner.querySelector('#cvai-initial-token-copy').onclick = () => {
-      navigator.clipboard.writeText(token).catch(() => {});
-      document.body.removeChild(banner);
-    };
-  }
-
-  async function ensureInitialToken() {
-    const s = await store('tokens', 'readonly');
-    const count = await requestToPromise(s.count());
-    if (count > 0) return;
-
-    const token = `admin_${randomHex(4)}`;
-    const writeStore = await store('tokens', 'readwrite');
-    await requestToPromise(
-      writeStore.add({ token, role: 'admin', is_active: 1, created_at: new Date().toISOString() }),
-    );
-    showInitialTokenBanner(token);
-  }
-
-  async function login(token) {
-    const s = await store('tokens', 'readonly');
-    const all = await requestToPromise(s.getAll());
-    const match = all.find((t) => t.token === token && t.is_active);
-    return match ? { success: true, role: match.role } : { success: false };
-  }
-
-  async function generateToken(role) {
-    const prefix = role === 'admin' ? 'admin_' : 'user_';
-    const token = `${prefix}${randomHex(16)}`;
-    const s = await store('tokens', 'readwrite');
-    await requestToPromise(s.add({ token, role, is_active: 1, created_at: new Date().toISOString() }));
-    return token;
-  }
-
-  async function getTokens() {
-    const s = await store('tokens', 'readonly');
-    const all = await requestToPromise(s.getAll());
-    return all.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-  }
-
-  async function revokeToken(id) {
-    const s = await store('tokens', 'readwrite');
-    const rec = await requestToPromise(s.get(id));
-    if (rec) {
-      rec.is_active = 0;
-      await requestToPromise(s.put(rec));
-    }
-    return true;
-  }
-
-  async function openAdminPanel() {
-    window.open('admin_panel.html', '_blank');
-    return true;
+  // Auth par token : gérée exclusivement par l'application Electron (IPC).
+  // En navigateur, le rôle est fourni par le serveur via window.CODEVAULT_ROLE
+  // (gate email) — aucun token n'est généré ni stocké côté client.
+  async function login() {
+    return { success: false };
   }
 
   window.electronAPI = {
@@ -270,19 +208,8 @@
     openSnippets,
     exportSnippet,
     login,
-    generateToken,
-    getTokens,
-    revokeToken,
-    openAdminPanel,
   };
 
-  // The server now resolves and injects the visitor's role via
-  // window.CODEVAULT_ROLE (see CodevaultController::app()) whenever this app
-  // is reached through the email access gate — the only way to reach it now.
-  // The per-browser auto-admin-token bootstrap below predates that and would
-  // otherwise pop up an "your access token" modal handing out an admin_...
-  // token to every visitor, including plain 'user' ones.
-  if (!window.CODEVAULT_ROLE) {
-    ensureInitialToken();
-  }
+  // Les tokens d'accès sont générés uniquement par l'application Electron (IPC).
+  // En navigateur, le rôle vient du serveur via window.CODEVAULT_ROLE (gate email).
 })();
