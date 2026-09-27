@@ -619,6 +619,10 @@ const App = () => {
   const [showChat, setShowChat] = React.useState(false);
   const [chatInput, setChatInput] = React.useState('');
   const [chatMessages, setChatMessages] = React.useState([]);
+  const [showAiSettings, setShowAiSettings] = React.useState(false);
+  const [aiKey, setAiKey] = React.useState(() => localStorage.getItem('cvai-ai-key') || '');
+  const [aiBase, setAiBase] = React.useState(() => localStorage.getItem('cvai-ai-base') || 'https://api.openai.com');
+  const [aiModel, setAiModel] = React.useState(() => localStorage.getItem('cvai-ai-model') || 'gpt-4o-mini');
   const chatEndRef = React.useRef(null);
 
   // Drag & Drop
@@ -1115,12 +1119,29 @@ const App = () => {
     localStorage.setItem('cvai-autonomous', newVal);
   };
 
+  const saveAiKey = () => {
+    if (window.CodeVaultAI && window.CodeVaultAI.setUserKey) {
+      window.CodeVaultAI.setUserKey(aiKey, aiBase, aiModel);
+    }
+    setShowAiSettings(false);
+  };
+
   const renderChatPanel = () => {
     if (!showChat) return null;
     return React.createElement('div', { className: 'fixed bottom-4 right-4 w-80 bg-slate-900/90 backdrop-blur-xl rounded-xl shadow-[0_0_20px_rgba(6,182,212,0.3)] border border-cyan-500/30 z-50 flex flex-col' }, [
       React.createElement('div', { className: 'flex justify-between items-center p-3 border-b border-cyan-500/30' }, [
         React.createElement('span', { className: 'font-bold text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]' }, '🤖 Laetitia'),
-        React.createElement('button', { onClick: () => setShowChat(false), className: 'text-slate-400 hover:text-white transition', 'aria-label': 'Fermer le chat' }, '✕')
+        React.createElement('div', { className: 'flex items-center gap-3' }, [
+          React.createElement('button', { key: 'set', onClick: () => setShowAiSettings(!showAiSettings), className: 'text-slate-400 hover:text-cyan-300 transition text-sm', title: 'Clé API personnelle' }, '⚙️'),
+          React.createElement('button', { key: 'x', onClick: () => setShowChat(false), className: 'text-slate-400 hover:text-white transition', 'aria-label': 'Fermer le chat' }, '✕')
+        ])
+      ]),
+      showAiSettings && React.createElement('div', { className: 'p-3 border-b border-cyan-500/30 space-y-2 bg-black/30' }, [
+        React.createElement('p', { key: 'h', className: 'text-[11px] text-cyan-200/70' }, 'Utilisez votre propre clé API (stockée en local, jamais envoyée au serveur).'),
+        React.createElement('input', { key: 'k', type: 'password', value: aiKey, onChange: (e) => setAiKey(e.target.value), placeholder: 'Clé API (ex: sk-...)', className: 'w-full p-2 bg-black/50 text-white rounded text-xs border border-cyan-900 focus:border-cyan-500 outline-none' }),
+        React.createElement('input', { key: 'b', type: 'text', value: aiBase, onChange: (e) => setAiBase(e.target.value), placeholder: 'Base URL (sans /v1, ex: https://api.openai.com)', className: 'w-full p-2 bg-black/50 text-white rounded text-xs border border-cyan-900 focus:border-cyan-500 outline-none' }),
+        React.createElement('input', { key: 'm', type: 'text', value: aiModel, onChange: (e) => setAiModel(e.target.value), placeholder: 'Modèle (ex: gpt-4o-mini)', className: 'w-full p-2 bg-black/50 text-white rounded text-xs border border-cyan-900 focus:border-cyan-500 outline-none' }),
+        React.createElement('button', { key: 's', onClick: saveAiKey, className: 'w-full py-2 rounded bg-cyan-600/80 hover:bg-cyan-500 text-white text-xs font-bold' }, 'Enregistrer')
       ]),
       React.createElement('div', { className: 'p-3 h-64 overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-cyan-900 scrollbar-track-transparent' }, [
         chatMessages.map((msg, i) => React.createElement('div', { key: i, className: `mb-2 p-2 rounded text-sm ${msg.type === 'user' ? 'bg-cyan-900/40 text-cyan-100 ml-8 border border-cyan-500/20' : 'bg-slate-800/80 text-green-300 mr-8 border border-green-500/20'}` }, msg.text)),
