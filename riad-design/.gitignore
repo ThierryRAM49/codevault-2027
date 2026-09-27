@@ -6,7 +6,10 @@
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /public/codevault/
-/public/assets/
+/public/assets/*
+!/public/assets/favicon.ico
+!/public/assets/favicon.svg
+!/public/assets/favicon-180.png
 /db/
 /logs/
 /var/
