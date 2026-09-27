@@ -72,6 +72,8 @@ and we lean on **NVIDIA's open-source models** hosted there:
   e.g. NVIDIA Nemotron, Qwen-Coder, DeepSeek.
 - **Nebius Token Factory** — on our roadmap: we plan to adopt its fast token/inference
   endpoints to accelerate prompt iteration and model serving in the next iterations.
+- **Tavily** — used at **runtime**: before replying, Laetitia calls the Tavily search API
+  (`POST https://api.tavily.com/search`) to ground its answers in up-to-date web results.
 - The assistant also auto-detects a **local** AI server (Ollama, LM Studio, llama.cpp…)
   so the app still works fully offline.
 
