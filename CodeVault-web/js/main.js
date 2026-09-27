@@ -477,7 +477,13 @@ const DEMO_EXAMPLES = {
 const DEMO_LANGS = [['JS', 'JavaScript'], ['TYPESCRIPT', 'TypeScript'], ['PYTHON', 'Python'], ['PHP', 'PHP'], ['JSON', 'JSON'], ['CSS', 'CSS'], ['HTML', 'HTML']];
 const DEMO_BEAUTIFY_SUPPORTED = { JS: true, TYPESCRIPT: true, JSON: true, CSS: true };
 
-const LandingPage = () => {
+const TRIAL_SNIPPETS = [
+  { title: 'Debounce (JS)', lang: 'JS', tags: ['Utilitaire'], code: "function debounce(fn, delay) {\n  let timer;\n  return (...args) => {\n    clearTimeout(timer);\n    timer = setTimeout(() => fn(...args), delay);\n  };\n}" },
+  { title: 'Slugify (Python)', lang: 'Python', tags: ['Script'], code: "import re\n\ndef slugify(text):\n    text = text.lower().strip()\n    text = re.sub(r'[^a-z0-9]+', '-', text)\n    return text.strip('-')" },
+  { title: 'Card component (CSS)', lang: 'CSS', tags: ['UI'], code: ".card {\n  border-radius: 12px;\n  padding: 16px;\n  box-shadow: 0 4px 20px rgba(0,0,0,0.15);\n}" }
+];
+
+const LandingPage = ({ onTrial }) => {
   const [lang, setLang] = React.useState('JS');
   const [code, setCode] = React.useState(DEMO_EXAMPLES.JS);
   const [findings, setFindings] = React.useState([]);
@@ -527,6 +533,7 @@ const LandingPage = () => {
     setRequestMsg("✅ Votre client e-mail va s'ouvrir — envoyez le message pour valider votre demande.");
   };
   const startTrial = () => {
+    if (onTrial) { onTrial(); return; }
     const el = document.getElementById('demo');
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
@@ -739,27 +746,7 @@ const App = () => {
       if (window.CODEVAULT_ROLE === 'trial') {
         window.electronAPI.getSnippets().then((existing) => {
           if (existing && existing.length > 0) return;
-          const examples = [
-            {
-              title: 'Debounce (JS)',
-              lang: 'JS',
-              tags: ['Utilitaire'],
-              code: "function debounce(fn, delay) {\n  let timer;\n  return (...args) => {\n    clearTimeout(timer);\n    timer = setTimeout(() => fn(...args), delay);\n  };\n}"
-            },
-            {
-              title: 'Slugify (Python)',
-              lang: 'Python',
-              tags: ['Script'],
-              code: "import re\n\ndef slugify(text):\n    text = text.lower().strip()\n    text = re.sub(r'[^a-z0-9]+', '-', text)\n    return text.strip('-')"
-            },
-            {
-              title: 'Card component (CSS)',
-              lang: 'CSS',
-              tags: ['UI'],
-              code: ".card {\n  border-radius: 12px;\n  padding: 16px;\n  box-shadow: 0 4px 20px rgba(0,0,0,0.15);\n}"
-            }
-          ];
-          examples.forEach((snippet) => window.electronAPI.addSnippet(snippet));
+          TRIAL_SNIPPETS.forEach((snippet) => window.electronAPI.addSnippet(snippet));
           setTimeout(loadData, 100);
         });
       }
@@ -861,8 +848,18 @@ const App = () => {
   ].sort();
   const themes = ['Général', 'Sécurité', 'Backend', 'Algo', 'Frontend', 'DevOps'];
 
+  // Essai visiteur (lecture seule) : entre dans le dashboard avec des exemples
+  const enterTrial = () => {
+    setUserRole('trial');
+    window.electronAPI.getSnippets().then((existing) => {
+      if (existing && existing.length > 0) { loadData(); return; }
+      TRIAL_SNIPPETS.forEach((snippet) => window.electronAPI.addSnippet(snippet));
+      setTimeout(loadData, 100);
+    });
+  };
+
   if (!userRole) {
-    return React.createElement(LandingPage, { key: 'landing' });
+    return React.createElement(LandingPage, { key: 'landing', onTrial: enterTrial });
   }
 
   async function handleLogin(tokenToUse = null, isAuto = false) {
@@ -889,6 +886,7 @@ const App = () => {
   }
 
   const handleLogout = async () => {
+    if (userRole === 'trial') { setUserRole(null); return; }
     localStorage.removeItem('cvai-token');
     // Destroy the server-side session too — without this, the still-valid
     // session cookie would silently let the visitor straight back into /app
@@ -978,6 +976,7 @@ const App = () => {
   // === IMPORT/EXPORT (Keep existing logic) ===
   // === IMPORT/EXPORT (Updated for robust file handling) ===
   const handleImportFiles = (e) => {
+    if (userRole !== 'admin' && userRole !== 'user') return;
     // Gestionnaire pour input[type=file] et potentiellement DnD manuel si implémenté
     const files = e.target.files;
     if (!files || files.length === 0) return;
@@ -1076,6 +1075,7 @@ const App = () => {
   };
 
   const handleExportAll = async () => {
+    if (userRole !== 'admin' && userRole !== 'user') return;
     try {
       const saved = await window.electronAPI.saveSnippets(snippets);
       if (saved) console.log(`✅ Sauvegardé :\n${saved}`);
@@ -1219,7 +1219,7 @@ const App = () => {
           '📦 RESTORE',
           React.createElement('input', { type: 'file', accept: '.json', style: { display: 'none' }, onChange: handleImportBackup })
         ]),
-        React.createElement('button', { onClick: handleExportAll, className: 'tap-target border border-green-500/50 bg-green-900/20 text-green-300 hover:bg-green-500/20 hover:shadow-[0_0_15px_rgba(34,197,94,0.4)] px-4 py-2 rounded-lg font-bold text-sm transition-all duration-300 backdrop-blur-sm' }, '💾 EXPORT'),
+        (userRole === 'admin' || userRole === 'user') && React.createElement('button', { onClick: handleExportAll, className: 'tap-target border border-green-500/50 bg-green-900/20 text-green-300 hover:bg-green-500/20 hover:shadow-[0_0_15px_rgba(34,197,94,0.4)] px-4 py-2 rounded-lg font-bold text-sm transition-all duration-300 backdrop-blur-sm' }, '💾 EXPORT'),
         React.createElement('button', {
           onClick: toggleAutonomous,
           className: `tap-target border ${autonomousMode ? 'border-purple-500 bg-purple-900/40 text-purple-300 shadow-[0_0_15px_rgba(168,85,247,0.4)]' : 'border-slate-600 bg-slate-900/40 text-slate-500'} px-4 py-2 rounded-lg font-bold text-sm transition-all duration-300 backdrop-blur-sm flex items-center gap-2`,
