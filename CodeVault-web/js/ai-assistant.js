@@ -36,7 +36,7 @@ class CodeVaultAI {
     // au serveur). Si présente, prioritaire sur la détection automatique.
     this.userKey = (localStorage.getItem('cvai-ai-key') || '').trim();
     this.userBase = (localStorage.getItem('cvai-ai-base') || 'https://api.studio.nebius.ai').replace(/\/+$/, '');
-    this.userModel = (localStorage.getItem('cvai-ai-model') || 'Qwen/Qwen2.5-Coder-32B-Instruct').trim();
+    this.userModel = (localStorage.getItem('cvai-ai-model') || 'nvidia/Llama-3.1-Nemotron-70B-Instruct').trim();
 
     // Détecter une IA locale disponible
     this.detectLocalAI();
@@ -91,7 +91,7 @@ class CodeVaultAI {
 
   // Nebius AI Studio (API OpenAI-compatible) — provider cloud recommandé.
   useNebius(key, model) {
-    return this.setUserKey(key, 'https://api.studio.nebius.ai', model || 'Qwen/Qwen2.5-Coder-32B-Instruct');
+    return this.setUserKey(key, 'https://api.studio.nebius.ai', model || 'nvidia/Llama-3.1-Nemotron-70B-Instruct');
   }
 
   async probeProvider(provider) {

@@ -622,7 +622,7 @@ const App = () => {
   const [showAiSettings, setShowAiSettings] = React.useState(false);
   const [aiKey, setAiKey] = React.useState(() => localStorage.getItem('cvai-ai-key') || '');
   const [aiBase, setAiBase] = React.useState(() => localStorage.getItem('cvai-ai-base') || 'https://api.studio.nebius.ai');
-  const [aiModel, setAiModel] = React.useState(() => localStorage.getItem('cvai-ai-model') || 'Qwen/Qwen2.5-Coder-32B-Instruct');
+  const [aiModel, setAiModel] = React.useState(() => localStorage.getItem('cvai-ai-model') || 'nvidia/Llama-3.1-Nemotron-70B-Instruct');
   const chatEndRef = React.useRef(null);
 
   // Drag & Drop
@@ -1139,7 +1139,7 @@ const App = () => {
       showAiSettings && React.createElement('div', { className: 'p-3 border-b border-cyan-500/30 space-y-2 bg-black/30' }, [
         React.createElement('p', { key: 'h', className: 'text-[11px] text-cyan-200/70' }, 'Utilisez votre propre clé API (Nebius AI Studio, OpenAI, Groq…). Stockée en local, jamais envoyée au serveur.'),
         React.createElement('div', { key: 'presets', className: 'flex flex-wrap gap-1' },
-          [['Nebius', 'https://api.studio.nebius.ai', 'Qwen/Qwen2.5-Coder-32B-Instruct'],
+          [['Nebius', 'https://api.studio.nebius.ai', 'nvidia/Llama-3.1-Nemotron-70B-Instruct'],
            ['OpenAI', 'https://api.openai.com', 'gpt-4o-mini'],
            ['Groq', 'https://api.groq.com/openai', 'llama-3.3-70b-versatile'],
            ['OpenRouter', 'https://openrouter.ai/api', 'deepseek/deepseek-chat']]
