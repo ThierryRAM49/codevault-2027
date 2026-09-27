@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CV - Thierry RAMANITRA | Développeur & Pentester</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --text: #e6edf3;
+      --accent: #58a6ff;
+      --card: #161b22;
+      --border: #30363d;
+      --green: #238636;
+      --purple: #a855f7;
+      --gray: #8b949e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 2rem;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      color: white;
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 1rem;
+    }
+
+    .contact {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    .contact a {
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0.5rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .entry {
+      position: relative;
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .entry::before {
+      content: '';
+      position: absolute;
+      left: -0.75rem;
+      top: 0.35rem;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: 3px solid var(--card);
+    }
+
+    .entry h3 {
+      font-size: 1.1rem;
+      color: var(--purple);
+      margin-bottom: 0.3rem;
+    }
+
+    .entry .meta {
+      font-size: 0.9rem;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .entry p {
+      font-size: 0.95rem;
+      color: var(--gray);
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+
+    .skill {
+      background: rgba(88, 166, 255, 0.15);
+      color: var(--accent);
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-family: 'JetBrains Mono', monospace;
+      border: 1px solid rgba(88, 166, 255, 0.3);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .project {
+      background: rgba(22, 27, 34, 0.8);
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .project h3 {
+      font-size: 1.05rem;
+      color: var(--purple);
+      margin-bottom: 0.4rem;
+    }
+
+    .tech {
+      font-size: 0.8rem;
+      color: var(--green);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .availability {
+      background: linear-gradient(90deg, #238636, #2ea043);
+      color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: 600;
+      margin: 1.5rem 0;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--gray);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media print {
+      body { padding: 0; background: white; color: black; }
+      .container { border: none; box-shadow: none; border-radius: 0; }
+      header { background: #1f6feb !important; }
+      a { color: blue; text-decoration: underline; }
+      .no-print { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .contact { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <h1>Thierry RAMANITRA</h1>
+      <p class="subtitle">Développeur Full-Stack • Compositeur • Spécialiste Cybersécurité</p>
+      <div class="contact">
+        <a href="mailto:riad-design@gmx.com"><i class="fas fa-envelope"></i>Me contacter</a>
+        <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i> github.com</a>
+        <a href="https://linkedin.com/in/Mon prénom nom" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com</a>
+        <a href="tel:+33600000000"><i class="fas fa-phone"></i> 06 00 00 00 00</a>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- Disponibilité -->
+      <div class="availability">
+        🎯 STAGE 4 SEMAINES : 16 mars → 13 avril 2025<br>
+        ✅ DISPONIBLE POUR CDI / ALTERNANCE / FREELANCE DÈS FIN DE FORMATION
+      </div>
+
+      <!-- Formation -->
+      <section>
+        <h2>Formation</h2>
+        <div class="timeline">
+          <div class="entry">
+            <h3>Développeur Web & Web Mobile (Bac+2)</h3>
+            <div class="meta">[Nom de l’organisme] • En cours</div>
+            <p>Full-stack, responsive design, PHP/MySQL, JavaScript, Git, sécurité web (OWASP).</p>
+          </div>
+          <div class="entry">
+            <h3>Autodidacte en programmation</h3>
+            <div class="meta">Depuis 2004 • +20 ans d’expérience personnelle</div>
+            <p>Langages : C, Java, Python, JS, PHP • Frameworks : Electron, Node.js • Outils : Kali Linux, Metasploit</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projets -->
+      <section>
+        <h2>Projets Clés</h2>
+        <div class="projects-grid">
+          <div class="project">
+            <h3>DAW Modulaire (Electron)</h3>
+            <p>Station audio open-source pour compositeurs. Export WAV/MIDI, VST.</p>
+            <p class="tech">Electron • Node.js • Web Audio API</p>
+          </div>
+          <div class="project">
+            <h3>Séquenceur Rythmique IA</h3>
+            <p>Génération automatique de beats via algorithmes.</p>
+            <p class="tech">JavaScript • Tone.js • Electron</p>
+          </div>
+          <div class="project">
+            <h3>Scanner Wi-Fi Centres Commerciaux</h3>
+            <p>Détection rogue APs, failles IoT, réseaux mal configurés.</p>
+            <p class="tech">Kali Linux • Python • Nmap • Aircrack-ng</p>
+          </div>
+          <div class="project">
+            <h3>Audit Caméras IP Automatisé</h3>
+            <p>Scan de ports, mots de passe faibles, vulnérabilités.</p>
+            <p class="tech">Bash • Metasploit • Wireshark</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Compétences -->
+      <section>
+        <h2>Compétences Techniques</h2>
+        <div class="skills">
+          <span class="skill">HTML/CSS</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">Node.js</span>
+          <span class="skill">Electron</span>
+          <span class="skill">PHP/MySQL</span>
+          <span class="skill">React</span>
+          <span class="skill">Git</span>
+          <span class="skill">Kali Linux</span>
+          <span class="skill">Python</span>
+          <span class="skill">Bash</span>
+          <span class="skill">Nmap</span>
+          <span class="skill">Metasploit</span>
+          <span class="skill">Wireshark</span>
+          <span class="skill">OWASP</span>
+          <span class="skill">Sécurité IoT</span>
+        </div>
+      </section>
+
+      <!-- Centres d'intérêt -->
+      <section>
+        <h2>Centres d'intérêt</h2>
+        <p>🎵 <strong>Musicien-compositeur</strong> (MAO, piano, synthétiseurs) • 🎹 Création d’outils pour artistes • 🔐 Pentesting éthique • 🧠 IA appliquée à la musique</p>
+      </section>
+
+    </main>
+
+    <footer>
+      CV généré en HTML/CSS • Imprimable • Mis à jour le 4 novembre 2025
+      <span class="no-print"> • <a href="#https://votresite.netlify.app#" style="color:var(--accent)">Voir mon portfolio</a></span>
+    </footer>
+
+  </div>
+</body>
+</html>
+  </div>
+</body>
+</html>

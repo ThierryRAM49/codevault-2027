@@ -1,0 +1,61 @@
+[
+  {
+    "id": "web-sur-mesure",
+    "title": "Applications web sur-mesure",
+    "description": "Sites vitrines, plateformes SaaS et tableaux de bord full-stack, du design à la mise en production. Exemples livrés : DEVOPS (outil de sélection de plateforme IA) et CodeVaultAI (coffre-fort de snippets avec éditeur Monaco).",
+    "category": "Développement web",
+    "tech": [
+      "React",
+      "Next.js",
+      "PHP/Symfony",
+      "TypeScript"
+    ]
+  },
+  {
+    "id": "devops-automatisation",
+    "title": "Outils DevOps & automatisation",
+    "description": "Scripts de déploiement, pipelines CI/CD, conteneurisation et infrastructure as code pour fiabiliser vos mises en production.",
+    "tech": [
+      "Docker",
+      "Bash",
+      "Nginx",
+      "Git"
+    ],
+    "category": "DevOps"
+  },
+  {
+    "id": "ia-locale",
+    "title": "Intégration d'IA locale & assistants IA",
+    "description": "Connexion d'un LLM local (Ollama, LM Studio) ou d'une API cloud à une application existante, avec repli automatique et respect de la vie privée des utilisateurs.",
+    "tech": [
+      "Ollama",
+      "LM Studio",
+      "API Anthropic",
+      "Node.js"
+    ],
+    "category": "Intelligence artificielle"
+  },
+  {
+    "id": "audit-securite",
+    "title": "Audit sécurité & tests d'intrusion",
+    "description": "Scan réseau, détection de failles de configuration et audit de sécurité éthique (Wi-Fi, caméras IP, applications web).",
+    "tech": [
+      "Kali Linux",
+      "Nmap",
+      "Metasploit",
+      "Wireshark"
+    ],
+    "category": "Cybersécurité"
+  },
+  {
+    "id": "audio-musical",
+    "title": "Applications audio & musicales sur-mesure",
+    "description": "Stations audio numériques et séquenceurs pour créateurs et compositeurs, export WAV/MIDI et interfaces fluides.",
+    "tech": [
+      "Electron",
+      "Web Audio API",
+      "Tone.js"
+    ],
+    "category": "Audio & musique"
+  }
+]

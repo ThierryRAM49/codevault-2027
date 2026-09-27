@@ -1,0 +1,548 @@
+[
+  {
+    "query": "A clean app icon design for developer tools, featuring code brackets, dark theme, professional look",
+    "image_info": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Brackets_Icon.svg/1200px-Brackets_Icon.svg.png",
+      "file_path": "/workspace/imgs/developer_tools_code_brackets_programming_app_icon.jpg",
+      "img_format": "PNG",
+      "mode": "RGBA",
+      "file_size": 47916,
+      "width": 1200,
+      "height": 1200,
+      "total_pixels": 1440000,
+      "basic_score": 0.8634482817424181
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 90.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is highly relevant as a clean, professional app icon for developer tools, prominently featuring code brackets. It perfectly matches the 'app icon', 'code brackets', 'professional look', and 'clean design' aspects of the search query and prompt. The only minor deviation is the 'dark theme' aspect of the prompt, as the main background of the icon is white, though the central symbol is dark gray. Its clarity and lack of watermarks are excellent.",
+      "file_name": "developer_tools_code_brackets_programming_app_icon.jpg",
+      "caption": "A modern app icon design featuring stylized dark gray square brackets, commonly associated with code, set against a clean white square background. The inner white square is framed by a glossy, rounded blue border with a subtle gradient, suggesting depth and professionalism. The icon is suitable for developer tools or programming applications, embodying a sleek and functional aesthetic.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "A professional app icon for a code snippet manager, dark blue theme, modern design suitable for browser extension",
+    "image_info": {
+      "url": "https://ph-files.imgix.net/8c945fcd-6e0c-49f8-9c53-129578070c4b.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024",
+      "file_path": "/workspace/imgs/code_snippet_manager_app_ui_dark_theme_modern_icon.jpg",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 41681,
+      "width": 1024,
+      "height": 512,
+      "total_pixels": 524288,
+      "basic_score": 0.843205496780543
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 98.0,
+      "clarity_score": 95.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is highly relevant to the search query and prompt, showcasing a modern, dark-blue themed UI for a code snippet manager, complete with a professional app icon. The clarity is excellent, and there are no watermarks. The design is clean and professional, suitable for a browser extension.",
+      "file_name": "code_snippet_manager_app_ui_dark_theme_modern_icon.jpg",
+      "caption": "A clean and modern user interface (UI) for a code snippet manager application, featuring a dark blue and purple theme. The top portion displays a abstract, colorful app icon and the tagline 'Organise your code snippets in a beautiful way'. Below, a detailed view of the application shows a left sidebar with 'MY SNIPPETS' categorized by 'JavaScript' and 'React' with an entry for 'Hooks'. The main panel displays JavaScript code for a React 'Hooks' snippet, demonstrating a `useState` import and a functional component definition. The overall design is sleek and professional, suitable for a developer tool or browser extension.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "A premium app icon for code management software, dark blue color scheme, clean modern design",
+    "image_info": {
+      "url": "https://cdn-icons-png.freepik.com/512/9608/9608767.png",
+      "file_path": "/workspace/imgs/dark_blue_code_management_app_icon.png",
+      "img_format": "PNG",
+      "mode": "RGBA",
+      "file_size": 31908,
+      "width": 512,
+      "height": 512,
+      "total_pixels": 262144,
+      "basic_score": 0.7631567098810279
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is an excellent match for the search query and prompt. It is a clean, modern app icon using a dark blue color scheme, featuring a gear and arrows inside a monitor, which strongly symbolizes code or process management for developers. The image clarity is perfect.",
+      "file_name": "dark_blue_code_management_app_icon.png",
+      "caption": "A minimalist app icon featuring a dark blue computer monitor with a lighter blue gear in the center and blue arrows indicating input and output, symbolizing code management, software development processes, or system automation. The design is clean and modern, set against a transparent background.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "A premium app icon for code management software, dark blue color scheme, clean modern design",
+    "image_info": {
+      "url": "https://cdn-icons-png.flaticon.com/512/5338/5338327.png",
+      "file_path": "/workspace/imgs/code_management_developer_app_icon_blue_gradient.jpg",
+      "img_format": "PNG",
+      "mode": "RGBA",
+      "file_size": 37976,
+      "width": 512,
+      "height": 512,
+      "total_pixels": 262144,
+      "basic_score": 0.7640685386936368
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 85.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 80.0,
+      "explanation": "The image is a high-quality, clean, and modern app icon perfectly representing code management and development with the `</>` symbol. Its clarity is excellent, and there are no watermarks. However, the color scheme is a bright blue-to-teal gradient, which deviates from the 'dark blue' specified in the search query and prompt, impacting the overall score for exact fulfillment.",
+      "file_name": "code_management_developer_app_icon_blue_gradient.jpg",
+      "caption": "A modern, minimalist app icon featuring black code tag symbols (`</>`) centered within a circular background that transitions with a vibrant blue to teal gradient. The icon is set against a solid black background, making it suitable for representing software development, coding, or code management applications.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "An upward trending chart icon for learning analytics features",
+    "image_info": {
+      "url": "https://img.favpng.com/16/19/16/chart-computer-icons-diagram-statistics-png-favpng-t8EZ2N13rrpJZjiPZZAvzJE5H.jpg",
+      "file_path": "/workspace/imgs/upward_trending_analytics_chart_icon_green_growth.png",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 48303,
+      "width": 820,
+      "height": 512,
+      "total_pixels": 419840,
+      "basic_score": 0.8245418492615588
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 100.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 100.0,
+      "explanation": "The image perfectly matches the search query and prompt. It clearly depicts an upward trending analytics chart as a clean, high-quality icon. There are no watermarks, and the clarity is exceptional, suggesting a vector graphic or a high-resolution render. The transparent background (indicated by the checkered pattern) is ideal for an icon.",
+      "file_name": "upward_trending_analytics_chart_icon_green_growth.png",
+      "caption": "A minimalist and modern icon representing an upward trending financial or data chart. The graphic features five dark grey vertical bars of progressively increasing height, overlaid with a bright green line graph that slopes upwards, culminating in a green arrow pointing towards the top right. Two small green circular markers are positioned along the green line. The background is transparent.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "An upward trending chart icon for learning analytics features",
+    "image_info": {
+      "url": "https://cdn0.iconfinder.com/data/icons/round-commerce/100/_-6-512.png",
+      "file_path": "/workspace/imgs/upward_trending_analytics_chart_icon_green.png",
+      "img_format": "PNG",
+      "mode": "RGBA",
+      "file_size": 26760,
+      "width": 512,
+      "height": 512,
+      "total_pixels": 262144,
+      "basic_score": 0.7623797714919518
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is highly relevant as it clearly depicts an upward trending analytics chart icon, matching both the search query and the prompt's request for 'learning analytics features'. It is exceptionally clear, sharp, and free of watermarks or imperfections. The design is professional and well-suited for an icon.",
+      "file_name": "upward_trending_analytics_chart_icon_green.png",
+      "caption": "A minimalist white line chart icon with an upward-pointing arrow, enclosed within a vibrant green circle with a subtle long shadow. The graphic represents growth, increasing trends, or positive analytics performance, ideal for digital interfaces, learning analytics features, or business dashboards.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "An upward trending chart icon for learning analytics features",
+    "image_info": {
+      "url": "https://cdn.pixabay.com/photo/2021/11/01/05/21/chart-6759438_1280.png",
+      "file_path": "/workspace/imgs/upward-trending-analytics-chart-icon.png",
+      "img_format": "PNG",
+      "mode": "RGBA",
+      "file_size": 28861,
+      "width": 1280,
+      "height": 1280,
+      "total_pixels": 1638400,
+      "basic_score": 0.8132039542985043
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is highly relevant to the search query and prompt, clearly depicting an upward trending chart icon suitable for analytics. It boasts excellent clarity with sharp lines and a clean design, and is completely free of watermarks. Its professional and minimalist aesthetic makes it highly suitable for digital applications.",
+      "file_name": "upward-trending-analytics-chart-icon.png",
+      "caption": "A minimalist icon featuring an upward-trending blue line on a dark grey chart grid against a light grey background, symbolizing growth, positive progress, business performance, or learning analytics. The clean design is suitable for digital interfaces and presentations.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Sparkles or stars icon representing smart auto-organization features",
+    "image_info": {
+      "url": "https://www.shutterstock.com/image-vector/generate-ai-abstract-vector-symbol-600nw-2513108121.jpg",
+      "file_path": "/workspace/imgs/gradient_sparkle_stars_icon.png",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 14142,
+      "width": 600,
+      "height": 600,
+      "total_pixels": 360000,
+      "basic_score": 0.8046529700591327
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 75.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 85.0,
+      "explanation": "The image is a high-quality, clear, and professional icon depicting sparkles or stars with a pleasing gradient. It perfectly matches the 'sparkles stars magic icon PNG' aspects of the search query. However, the icon itself does not inherently convey 'AI' or 'smart auto-organization features' without additional context, which slightly reduces the relevance score for those specific conceptual components. Its visual quality is exceptional.",
+      "file_name": "gradient_sparkle_stars_icon.png",
+      "caption": "A clean vector-style icon featuring three multi-pointed stars or sparkles of varying sizes, rendered with a smooth gradient transitioning from vibrant purple at the top to bright cyan at the bottom. The shapes are crisp and isolated on a pure white background, ideal for digital interfaces or branding.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Sparkles or stars icon representing smart auto-organization features",
+    "image_info": {
+      "url": "https://preview.redd.it/can-anyone-explain-how-this-flashy-stars-imagery-have-been-v0-zqsuvvkkh5nb1.jpg?width=1080&crop=smart&auto=webp&s=498d8a343b79f0abd8df424bc7cf8d801a72b11c",
+      "file_path": "/workspace/imgs/gradient_sparkle_stars_ai_icon_auto_organization.png",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 16369,
+      "width": 1080,
+      "height": 607,
+      "total_pixels": 655560,
+      "basic_score": 0.8844501462615276
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 98.0,
+      "explanation": "The image perfectly matches the 'sparkles/stars icon' aspect of the query and prompt. The gradient colors evoke a sense of 'magic' and modernity, suitable for an 'AI icon' or 'smart auto-organization features' conceptually. Clarity is perfect, with no watermarks, and the overall design quality is excellent, making it highly professional and versatile.",
+      "file_name": "gradient_sparkle_stars_ai_icon_auto_organization.png",
+      "caption": "A modern, minimalist icon featuring two stylized four-pointed stars or sparkles with rounded tips. The shapes display a smooth gradient transitioning from vibrant orange and red tones through purple to bright blue, set against a pristine white background. The larger star is prominently positioned, with a smaller star offset to its lower right, creating a sense of dynamism. This abstract design is ideal for representing concepts such as smart technology, AI features, innovation, or auto-organization due to its clean lines and appealing color scheme.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Sparkles or stars icon representing smart auto-organization features",
+    "image_info": {
+      "url": "https://static.vecteezy.com/system/resources/previews/067/923/497/non_2x/ai-logo-icon-magic-sparkle-stars-symbol-vector.jpg",
+      "file_path": "/workspace/imgs/sparkle_stars_smart_ai_icon_black_white.jpg",
+      "img_format": "JPEG",
+      "mode": "L",
+      "file_size": 37522,
+      "width": 1920,
+      "height": 835,
+      "total_pixels": 1603200,
+      "basic_score": 0.797721559323733
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 92.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image perfectly matches the 'sparkles stars icon' aspect of the query and prompt. The design is clean and professional, suitable for an 'AI icon' representing 'smart' features due to the common UI/UX association of sparkles with enhancement or newness. The inclusion of both black-on-white and white-on-black versions adds versatility. Clarity is excellent, with no watermarks.",
+      "file_name": "sparkle_stars_smart_ai_icon_black_white.jpg",
+      "caption": "A bipartite image showcasing stylized four-pointed sparkle or star icons. The left panel features three black sparkle icons on a pristine white background, while the right panel displays three white sparkle icons on a solid black background. The icons vary in size and are arranged dynamically. This graphic is ideal for representing concepts such as magic, new features, cleanliness, intelligence, or smart auto-organization in user interfaces and digital design.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "A dark-themed folder icon representing code collection and organization features",
+    "image_info": {
+      "url": "https://cdn-icons-png.flaticon.com/512/49/49138.png",
+      "file_path": "/workspace/imgs/dark_folder_organization_icon.png",
+      "img_format": "PNG",
+      "mode": "P",
+      "file_size": 3493,
+      "width": 512,
+      "height": 512,
+      "total_pixels": 262144,
+      "basic_score": 0.7588311627746622
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is a perfectly clear, dark (black) folder icon, highly relevant to the search query and prompt. It effectively represents organization and collection, making it suitable for code features. There are no watermarks, and its minimalist design is professionally executed.",
+      "file_name": "dark_folder_organization_icon.png",
+      "caption": "A minimalist, two-dimensional icon featuring an open folder rendered in solid black with a subtle white outline, symbolizing file organization, collection, or a digital repository for code and documents.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Code brackets icon for the main CodeStash brand logo",
+    "image_info": {
+      "url": "https://cdn0.iconfinder.com/data/icons/dev-coding-2/100/Curly_brackets-512.png",
+      "file_path": "/workspace/imgs/blue_curly_code_brackets_programming_icon.png",
+      "img_format": "PNG",
+      "mode": "RGBA",
+      "file_size": 10129,
+      "width": 512,
+      "height": 512,
+      "total_pixels": 262144,
+      "basic_score": 0.7598493284604206
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 100.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 100.0,
+      "explanation": "The image is a perfect, highly relevant match for both the search query and the prompt. It clearly displays code brackets, is suitable as a programming icon, and its clean, crisp nature makes it ideal for a brand logo. It has excellent clarity and no watermarks.",
+      "file_name": "blue_curly_code_brackets_programming_icon.png",
+      "caption": "A minimalist graphic featuring a pair of solid blue curly braces ({}) centered on a dark black background, designed as a programming icon or a component for a technology brand logo.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Code brackets icon for the main CodeStash brand logo",
+    "image_info": {
+      "url": "https://cdn-icons-png.flaticon.com/512/2572/2572630.png",
+      "file_path": "/workspace/imgs/codestash_brand_logo_programming_code_brackets_icon.png",
+      "img_format": "PNG",
+      "mode": "RGBA",
+      "file_size": 21108,
+      "width": 512,
+      "height": 512,
+      "total_pixels": 262144,
+      "basic_score": 0.7615232789355577
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 98.0,
+      "clarity_score": 95.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is a perfect match for the search query 'code brackets programming icon' and is highly suitable for a brand logo as specified in the prompt. It boasts excellent clarity, sharp lines, and no watermarks, making it a professional and versatile asset.",
+      "file_name": "codestash_brand_logo_programming_code_brackets_icon.png",
+      "caption": "A clean, vector-style icon featuring prominent white and light gray angle brackets (`< />`) centered within a vibrant solid blue circular background. This minimalist design is commonly used to represent programming, coding, web development, and software engineering concepts, making it ideal for application icons, digital interfaces, or a brand logo like 'CodeStash'. The image has a transparent background.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "Code brackets icon for the main CodeStash brand logo",
+    "image_info": {
+      "url": "https://static.vecteezy.com/system/resources/thumbnails/053/984/714/small_2x/3d-code-bracket-icon-png.png",
+      "file_path": "/workspace/imgs/3d_purple_code_brackets_programming_icon.jpg",
+      "img_format": "PNG",
+      "mode": "RGBA",
+      "file_size": 53016,
+      "width": 400,
+      "height": 400,
+      "total_pixels": 160000,
+      "basic_score": 0.7272328964783488
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 98.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is highly relevant to both the search query and prompt, featuring a clear and professionally rendered 3D icon of code brackets. Its modern, clean aesthetic and high clarity make it excellent for a brand logo, and there are no watermarks.",
+      "file_name": "3d_purple_code_brackets_programming_icon.jpg",
+      "caption": "A high-quality 3D rendered icon featuring stylized purple or lavender code brackets (`</>`) with a glossy, polished finish, set against a solid black background. The modern, clean design suggests programming, web development, or digital technology, making it ideal for a brand logo or digital asset.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "A dark-themed AI brain icon with neural network patterns, suitable for representing AI code intelligence features",
+    "image_info": {
+      "url": "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://media.easy-peasy.ai/27feb2bb-aeb4-4a83-9fb6-8f3f2a15885e/226a760e-1f0a-4b9e-b57d-0fe6d6fef74b.png",
+      "file_path": "/workspace/imgs/ai-brain-neural-network-icon-dark-theme.png",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 89538,
+      "width": 700,
+      "height": 700,
+      "total_pixels": 490000,
+      "basic_score": 0.8527501712123853
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 100.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 100.0,
+      "explanation": "The image is an exceptional match for both the search query and the prompt. It perfectly depicts an AI brain with a neural network structure, presented as a clear, high-quality icon on a dark theme. There are no watermarks, and the overall composition is highly professional and effective for representing AI intelligence features.",
+      "file_name": "ai-brain-neural-network-icon-dark-theme.png",
+      "caption": "An abstract, dark-themed digital illustration of a human brain, split into two hemispheres, rendered with a luminous white neural network pattern of interconnected lines and dots. A bright, glowing light emanates from the central fissure, symbolizing active thought, intelligence, or data processing. The black background emphasizes the network's intricate design, making it ideal as an icon for artificial intelligence, machine learning, deep learning, or AI code intelligence features.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "A modern search icon representing semantic code search functionality",
+    "image_info": {
+      "url": "https://static.vecteezy.com/system/resources/previews/055/229/099/non_2x/ai-search-icon-searching-analysis-by-machine-learning-artificial-intelligence-technology-search-magnifying-glass-free-vector.jpg",
+      "file_path": "/workspace/imgs/ai-semantic-enhanced-search-magnifying-glass-icon.png",
+      "img_format": "JPEG",
+      "mode": "L",
+      "file_size": 23302,
+      "width": 980,
+      "height": 980,
+      "total_pixels": 960400,
+      "basic_score": 0.918468619669021
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 85.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is a clear, modern icon of a magnifying glass, highly relevant to 'search' and 'icon'. The sparkles within the lens effectively convey 'semantic' or 'AI-enhanced' functionality, implying deeper understanding or smarter results. It fits 'modern search icon' perfectly. However, there's no visual element explicitly indicating 'code' functionality, which slightly reduces the overall relevance to the specific prompt.",
+      "file_name": "ai-semantic-enhanced-search-magnifying-glass-icon.png",
+      "caption": "A minimalist black and white icon depicting a magnifying glass with several sparkling stars inside its lens, symbolizing enhanced, smart, or semantic search capabilities. The clean vector design makes it suitable for modern user interfaces and digital applications.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "A modern search icon representing semantic code search functionality",
+    "image_info": {
+      "url": "https://img.freepik.com/premium-photo/search-icon-magnifying-glass-zoom-symbol-investigation-concept-magnification-tool-searching_980716-82395.jpg",
+      "file_path": "/workspace/imgs/modern-search-magnifying-glass-pencil-icon.png",
+      "img_format": "JPEG",
+      "mode": "RGB",
+      "file_size": 54934,
+      "width": 626,
+      "height": 626,
+      "total_pixels": 391876,
+      "basic_score": 0.8201877626142708
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 70.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is a high-quality, clear illustration perfectly suited as a modern search icon, directly matching the 'search' and 'magnifying glass' components of the query. Its clean, illustrative style also aligns well with 'AI icon' aesthetics. However, the pencil handle, while creative, does not explicitly convey 'semantic code search functionality' as requested in the prompt, leading to a moderate relevance score for that specific aspect. Overall quality is excellent with no watermarks.",
+      "file_name": "modern-search-magnifying-glass-pencil-icon.png",
+      "caption": "A vibrant and clean vector-style illustration featuring a magnifying glass with a bright yellow pencil serving as its handle, set against a soft, light blue watercolor-effect background with subtle dots. The design is crisp with bold outlines and a clear glass effect, making it an ideal modern icon for applications, user interfaces, or educational materials related to searching, writing, creativity, or problem-solving.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "A layers or stack icon representing intelligent collections",
+    "image_info": {
+      "url": "https://cdn4.iconfinder.com/data/icons/business-analysis-vol-1-2/317/layer_layers-512.png",
+      "file_path": "/workspace/imgs/layers_stack_organization_data_collection_icon.png",
+      "img_format": "PNG",
+      "mode": "RGBA",
+      "file_size": 30039,
+      "width": 512,
+      "height": 512,
+      "total_pixels": 262144,
+      "basic_score": 0.7628749931024057
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 98.0,
+      "watermark_score": 100.0,
+      "overall_score": 97.0,
+      "explanation": "The image is an exceptionally clear and well-designed icon that perfectly matches the 'layers stack organization icon' part of the search query and prompt. Its vector-like quality ensures high clarity, and it has no watermarks. The stacked design strongly implies 'collections' and 'organization,' making it highly relevant for representing intelligent collections metaphorically.",
+      "file_name": "layers_stack_organization_data_collection_icon.png",
+      "caption": "A crisp, flat-design isometric icon featuring three stacked, rectangular layers or sheets. The top layer is teal, the middle is yellow, and the bottom is red, all outlined in a dark blue. Each layer includes small white dashed lines, symbolizing content, data, or information contained within. The icon effectively represents concepts of layering, data organization, structured information, or intelligent collections in a digital context.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "A layers or stack icon representing intelligent collections",
+    "image_info": {
+      "url": "https://icon-library.com/images/layers-icon/layers-icon-3.jpg",
+      "file_path": "/workspace/imgs/colorful-layers-stack-organization-icon.png",
+      "img_format": "PNG",
+      "mode": "RGBA",
+      "file_size": 16176,
+      "width": 1024,
+      "height": 1024,
+      "total_pixels": 1048576,
+      "basic_score": 0.908143135099408
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 98.0,
+      "explanation": "The image is an excellent match for 'layers stack organization icon'. It clearly depicts stacked layers, which inherently suggests organization and can be used to represent collections. The clarity is perfect, being a clean vector-style graphic. There are no watermarks. Overall, it's a professionally designed, versatile icon that perfectly fulfills the core search query and can easily represent 'intelligent collections' in context.",
+      "file_name": "colorful-layers-stack-organization-icon.png",
+      "caption": "A minimalist flat design icon featuring three distinct, offset, stacked layers. The top layer is yellow, the middle layer is blue, and the bottom layer is red, all set against a solid black background. This graphic effectively represents concepts like data organization, hierarchical structures, intelligent collections, or multiple components stacked together.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "A layers or stack icon representing intelligent collections",
+    "image_info": {
+      "url": "https://cdn-icons-png.flaticon.com/512/875/875133.png",
+      "file_path": "/workspace/imgs/layers_stack_organization_icon.png",
+      "img_format": "PNG",
+      "mode": "RGBA",
+      "file_size": 13374,
+      "width": 512,
+      "height": 512,
+      "total_pixels": 262144,
+      "basic_score": 0.7603454734096775
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is a perfectly clear and professional icon that directly represents stacked layers or collections, making it highly relevant to the search query and prompt. It has no watermarks and is ideal for digital use.",
+      "file_name": "layers_stack_organization_icon.png",
+      "caption": "A minimalist black and white graphic icon depicting three stacked, slightly offset rectangular or diamond shapes, symbolizing multiple layers, organized stacks, or collections. The top layer is a solid shape, while the two lower layers show only their upper edges, creating a sense of depth and hierarchy, suitable for representing 'intelligent collections' or data organization.",
+      "recommend": true,
+      "error": ""
+    }
+  },
+  {
+    "query": "A layers or stack icon representing intelligent collections",
+    "image_info": {
+      "url": "https://cdn-icons-png.flaticon.com/512/1218/1218355.png",
+      "file_path": "/workspace/imgs/stacked_layers_icon.png",
+      "img_format": "PNG",
+      "mode": "RGBA",
+      "file_size": 20622,
+      "width": 512,
+      "height": 512,
+      "total_pixels": 262144,
+      "basic_score": 0.7614494628237716
+    },
+    "llm_score": {
+      "success": true,
+      "relevance_score": 95.0,
+      "clarity_score": 100.0,
+      "watermark_score": 100.0,
+      "overall_score": 95.0,
+      "explanation": "The image is a perfectly clear and sharp line art icon depicting stacked layers, directly matching the core visual requirement of a 'layers stack icon'. While generic, its simplicity allows it to effectively represent 'intelligent collections' when used in an appropriate context, making it highly relevant to the prompt's intent. It is clean and professional.",
+      "file_name": "stacked_layers_icon.png",
+      "caption": "A minimalist black and white line art icon featuring three horizontally stacked, diamond-shaped layers, symbolizing organization, data hierarchy, or collections.",
+      "recommend": true,
+      "error": ""
+    }
+  }
+]

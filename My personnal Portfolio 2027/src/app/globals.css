@@ -1,0 +1,689 @@
+@import "tailwindcss";
+
+:root {
+    --bg: #0d1117;
+    --text: #e6edf3;
+    --accent: #58a6ff;
+    --card: #161b22;
+    --border: #30363d;
+    --green: #238636;
+    --purple: #a855f7;
+    --gray: #8b949e;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-jetbrains-mono), 'JetBrains Mono', 'Courier New', monospace;
+    margin: 0;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+a {
+    color: inherit;
+}
+
+/* Full-page robot background video */
+.site-video-bg {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.site-video-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(13, 17, 23, 0.72);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(13, 17, 23, 0.55);
+    backdrop-filter: blur(8px);
+}
+
+@media (min-width: 640px) {
+    .navbar {
+        padding: 20px 32px;
+    }
+}
+
+.navbar-logo {
+    text-decoration: none;
+}
+
+.hologram-logo {
+    font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
+.hologram-letter {
+    display: inline-block;
+    transform-origin: center bottom;
+    opacity: 0;
+    visibility: hidden;
+    animation:
+        hologram-intro 1.6s cubic-bezier(0.22, 0.9, 0.3, 1) var(--d, 0s) forwards,
+        hologram-lens 9s ease-in-out var(--ld, 1.6s) infinite,
+        hologram-cycle 11s ease-in-out var(--cycle-delay, 6s) infinite;
+    animation-play-state: paused;
+}
+
+.hologram-logo.is-animating .hologram-letter {
+    animation-play-state: running;
+}
+
+.hologram-logo-accent {
+    color: var(--accent);
+}
+
+/* Entrance: each letter zooms in from an out-of-focus close-up, like a magnifying
+   lens pulling back into focus, then settles at normal size. */
+@keyframes hologram-intro {
+    0% { opacity: 0; visibility: visible; transform: scale(2.4); filter: blur(6px); text-shadow: none; }
+    14% {
+        opacity: 1;
+        transform: scale(1.7);
+        filter: blur(2px);
+        text-shadow: 1px 0 0 rgba(236, 72, 153, 0.4), -1px 0 0 rgba(88, 166, 255, 0.4);
+    }
+    24% { opacity: 0.25; transform: scale(1.35); filter: blur(1px); text-shadow: none; }
+    40% {
+        opacity: 1;
+        transform: scale(1.18);
+        filter: blur(0);
+        text-shadow: 0 0 10px rgba(88, 166, 255, 0.9), 0 0 22px rgba(88, 166, 255, 0.5);
+    }
+    58% { opacity: 0.55; transform: scale(0.94); text-shadow: 0 0 4px rgba(88, 166, 255, 0.6); }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        text-shadow: 0 0 8px rgba(88, 166, 255, 0.7), 0 0 18px rgba(88, 166, 255, 0.35);
+    }
+}
+
+/* Ongoing "life": a magnifying-glass pulse sweeps letter by letter, forever,
+   independently of the color cycle below — enlarging each letter and, like
+   light splitting through a lens, flashing it through the spectrum via
+   hue-rotate (which shifts the glow too, without touching the base color
+   the hologram-cycle animation owns). */
+@keyframes hologram-lens {
+    0%, 80%, 100% { transform: scale(1); filter: brightness(1) hue-rotate(0deg) saturate(1); }
+    84% { transform: scale(1.8); filter: brightness(1.6) hue-rotate(100deg) saturate(1.6); }
+    89% { transform: scale(2.45); filter: brightness(2.1) hue-rotate(200deg) saturate(2.2); }
+    92% { transform: scale(2.1); filter: brightness(1.5) hue-rotate(290deg) saturate(1.6); }
+    97% { transform: scale(1.15); filter: brightness(1.05) hue-rotate(345deg) saturate(1.1); }
+}
+
+/* Holds in neon blue, vanishes, then relights in neon rose, and back again — looping forever. */
+@keyframes hologram-cycle {
+    0%, 30% {
+        opacity: 1;
+        color: rgb(88, 166, 255);
+        text-shadow:
+            1px 0 0 rgba(236, 72, 153, 0.25),
+            -1px 0 0 rgba(45, 212, 255, 0.25),
+            0 0 8px rgba(88, 166, 255, 0.7),
+            0 0 18px rgba(88, 166, 255, 0.35);
+    }
+    34% { opacity: 0.3; text-shadow: 0 0 3px rgba(88, 166, 255, 0.4); }
+    38% { opacity: 0; visibility: hidden; color: rgb(88, 166, 255); text-shadow: none; }
+    40% { opacity: 0; visibility: hidden; color: rgb(236, 72, 153); text-shadow: none; }
+    44% { opacity: 1; visibility: visible; text-shadow: 0 0 14px rgba(236, 72, 153, 1), 0 0 28px rgba(236, 72, 153, 0.6); }
+    48% { opacity: 0.4; text-shadow: 0 0 4px rgba(236, 72, 153, 0.5); }
+    52%, 80% {
+        opacity: 1;
+        color: rgb(236, 72, 153);
+        text-shadow:
+            1px 0 0 rgba(88, 166, 255, 0.25),
+            -1px 0 0 rgba(255, 255, 255, 0.2),
+            0 0 8px rgba(236, 72, 153, 0.7),
+            0 0 18px rgba(236, 72, 153, 0.35);
+    }
+    84% { opacity: 0.3; text-shadow: 0 0 3px rgba(236, 72, 153, 0.4); }
+    88% { opacity: 0; visibility: hidden; color: rgb(236, 72, 153); text-shadow: none; }
+    90% { opacity: 0; visibility: hidden; color: rgb(88, 166, 255); text-shadow: none; }
+    94% { opacity: 1; visibility: visible; text-shadow: 0 0 14px rgba(88, 166, 255, 1), 0 0 28px rgba(88, 166, 255, 0.6); }
+    97% { opacity: 0.4; text-shadow: 0 0 4px rgba(88, 166, 255, 0.5); }
+    100% {
+        opacity: 1;
+        color: rgb(88, 166, 255);
+        text-shadow:
+            1px 0 0 rgba(236, 72, 153, 0.25),
+            -1px 0 0 rgba(45, 212, 255, 0.25),
+            0 0 8px rgba(88, 166, 255, 0.7),
+            0 0 18px rgba(88, 166, 255, 0.35);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hologram-letter {
+        animation: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        filter: none;
+        text-shadow: 0 0 8px rgba(88, 166, 255, 0.7), 0 0 18px rgba(88, 166, 255, 0.35);
+    }
+}
+
+@media (max-width: 480px) {
+    .hologram-logo {
+        font-size: 0.85rem;
+    }
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 16px;
+    font-size: 0.9rem;
+}
+
+@media (min-width: 640px) {
+    .navbar-links {
+        gap: 24px;
+    }
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: var(--gray);
+    transition: color 0.15s;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 4px 0;
+}
+
+.navbar-links a:hover {
+    color: var(--text);
+}
+
+.navbar-admin {
+    border: 1px solid var(--accent);
+    color: var(--accent) !important;
+    border-radius: 8px;
+    padding: 6px 14px;
+    min-height: 44px;
+    box-sizing: border-box;
+}
+
+/* Hero */
+.hero {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    min-height: 70vh;
+    padding: 40px 20px;
+}
+
+.hero h1 {
+    font-size: clamp(1.6rem, 5vw, 3.5rem);
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+.hero-accent {
+    color: #f0f;
+}
+
+.hero .subtitle {
+    font-size: 1.2rem;
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+}
+
+.tags {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.tag {
+    background: var(--card);
+    padding: 0.4rem 0.9rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    border: 1px solid var(--border);
+    color: var(--green);
+}
+
+.cta-button {
+    background: var(--accent);
+    color: #000;
+    padding: 16px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: inline-block;
+}
+
+/* Sections */
+section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 24px;
+}
+
+section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--accent);
+    position: relative;
+    display: inline-block;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--accent);
+}
+
+.section-intro {
+    color: var(--gray);
+    margin-bottom: 2rem;
+    max-width: 60ch;
+}
+
+.profil-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.profil-header h2 {
+    display: block;
+}
+
+.profil-header h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.profil-contact {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.profil-contact h2 {
+    display: block;
+}
+
+.profil-contact h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Project cards */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.project-card-clickable {
+    cursor: pointer;
+}
+
+.project-card-clickable:hover {
+    border-color: var(--accent);
+}
+
+.project-card-editing {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.project-card-editing input,
+.project-card-editing textarea {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 0.7rem;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.project-card-edit-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.project-card-edit-actions button {
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.project-card-edit-actions button:first-child {
+    background: var(--green);
+    color: white;
+}
+
+.project-card-edit-actions button:last-child {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.project-category {
+    font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.project-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--purple);
+}
+
+.project-desc {
+    font-size: 0.95rem;
+    color: var(--gray);
+    margin-bottom: 1rem;
+}
+
+.tech-stack {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tech {
+    background: rgba(88, 166, 255, 0.1);
+    color: var(--accent);
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+}
+
+/* Contact */
+.contact-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.profil-contact .contact-links {
+    justify-content: center;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    max-width: 500px;
+}
+
+.contact-form label {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-top: 0.6rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    color: var(--text);
+    font-size: 0.95rem;
+    font-family: inherit;
+}
+
+.contact-submit {
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    align-self: flex-start;
+}
+
+.btn {
+    background: var(--accent);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--gray);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+}
+
+.site-footer a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* Auth */
+.auth-page {
+    display: grid;
+    place-items: center;
+    min-height: 70vh;
+    padding: 20px;
+}
+
+.auth-form {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form h1 {
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+}
+
+.auth-hint {
+    color: var(--gray);
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+}
+
+.auth-form label {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-bottom: 0.4rem;
+    margin-top: 1rem;
+}
+
+.auth-form input {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+.auth-form button {
+    margin-top: 1.5rem;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.auth-form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.auth-error {
+    color: #f85149;
+    font-size: 0.85rem;
+    margin-top: 0.8rem;
+}
+
+/* Admin projects page */
+.admin-page {
+    max-width: 800px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.admin-header button {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--gray);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.admin-project-row {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.admin-project-row .actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.admin-project-row button {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--gray);
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.admin-project-row button:hover {
+    color: var(--text);
+}
+
+.admin-form {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.admin-form input,
+.admin-form textarea {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    color: var(--text);
+    font-size: 0.9rem;
+}
+
+.admin-form button[type='submit'] {
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.admin-message {
+    font-size: 0.85rem;
+    color: var(--gray);
+}

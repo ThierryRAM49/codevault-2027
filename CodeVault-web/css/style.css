@@ -1,0 +1,147 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}
+.msg {
+  animation: fadeIn 0.3s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid rgba(34, 211, 238, 0.8);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse,
+  .animate-pulse-slow,
+  [class*="animate-pulse"] {
+    animation: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .tap-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .tap-target-sm {
+    min-height: 40px;
+    min-width: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Hologram logo — animated neon letters, cyan/blue to match CodeVault's existing palette. */
+.hologram-logo {
+  white-space: nowrap;
+}
+
+.hologram-letter {
+  display: inline-block;
+  transform-origin: center bottom;
+  opacity: 0;
+  visibility: hidden;
+  animation:
+    hologram-intro 1.6s cubic-bezier(0.22, 0.9, 0.3, 1) var(--d, 0s) forwards,
+    hologram-lens 9s ease-in-out var(--ld, 1.6s) infinite,
+    hologram-cycle 11s ease-in-out var(--cycle-delay, 6s) infinite;
+  animation-play-state: paused;
+}
+
+.hologram-logo.is-animating .hologram-letter {
+  animation-play-state: running;
+}
+
+@keyframes hologram-intro {
+  0% { opacity: 0; visibility: visible; transform: scale(2.4); filter: blur(6px); text-shadow: none; }
+  14% {
+    opacity: 1;
+    transform: scale(1.7);
+    filter: blur(2px);
+    text-shadow: 1px 0 0 rgba(59, 130, 246, 0.4), -1px 0 0 rgba(34, 211, 238, 0.4);
+  }
+  24% { opacity: 0.25; transform: scale(1.35); filter: blur(1px); text-shadow: none; }
+  40% {
+    opacity: 1;
+    transform: scale(1.18);
+    filter: blur(0);
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.9), 0 0 22px rgba(34, 211, 238, 0.5);
+  }
+  58% { opacity: 0.55; transform: scale(0.94); text-shadow: 0 0 4px rgba(34, 211, 238, 0.6); }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    text-shadow: 0 0 8px rgba(34, 211, 238, 0.7), 0 0 18px rgba(34, 211, 238, 0.35);
+  }
+}
+
+@keyframes hologram-lens {
+  0%, 80%, 100% { transform: scale(1); filter: brightness(1) hue-rotate(0deg) saturate(1); }
+  84% { transform: scale(1.8); filter: brightness(1.6) hue-rotate(30deg) saturate(1.6); }
+  89% { transform: scale(2.45); filter: brightness(2.1) hue-rotate(50deg) saturate(2.2); }
+  92% { transform: scale(2.1); filter: brightness(1.5) hue-rotate(60deg) saturate(1.6); }
+  97% { transform: scale(1.15); filter: brightness(1.05) hue-rotate(20deg) saturate(1.1); }
+}
+
+/* Holds in cyan, vanishes, then relights in blue, and back again — looping forever. */
+@keyframes hologram-cycle {
+  0%, 30% {
+    opacity: 1;
+    color: rgb(34, 211, 238);
+    text-shadow:
+      1px 0 0 rgba(59, 130, 246, 0.25),
+      -1px 0 0 rgba(103, 232, 249, 0.25),
+      0 0 8px rgba(34, 211, 238, 0.7),
+      0 0 18px rgba(34, 211, 238, 0.35);
+  }
+  34% { opacity: 0.3; text-shadow: 0 0 3px rgba(34, 211, 238, 0.4); }
+  38% { opacity: 0; visibility: hidden; color: rgb(34, 211, 238); text-shadow: none; }
+  40% { opacity: 0; visibility: hidden; color: rgb(59, 130, 246); text-shadow: none; }
+  44% { opacity: 1; visibility: visible; text-shadow: 0 0 14px rgba(59, 130, 246, 1), 0 0 28px rgba(59, 130, 246, 0.6); }
+  48% { opacity: 0.4; text-shadow: 0 0 4px rgba(59, 130, 246, 0.5); }
+  52%, 80% {
+    opacity: 1;
+    color: rgb(59, 130, 246);
+    text-shadow:
+      1px 0 0 rgba(34, 211, 238, 0.25),
+      -1px 0 0 rgba(255, 255, 255, 0.2),
+      0 0 8px rgba(59, 130, 246, 0.7),
+      0 0 18px rgba(59, 130, 246, 0.35);
+  }
+  84% { opacity: 0.3; text-shadow: 0 0 3px rgba(59, 130, 246, 0.4); }
+  88% { opacity: 0; visibility: hidden; color: rgb(59, 130, 246); text-shadow: none; }
+  90% { opacity: 0; visibility: hidden; color: rgb(34, 211, 238); text-shadow: none; }
+  94% { opacity: 1; visibility: visible; text-shadow: 0 0 14px rgba(34, 211, 238, 1), 0 0 28px rgba(34, 211, 238, 0.6); }
+  97% { opacity: 0.4; text-shadow: 0 0 4px rgba(34, 211, 238, 0.5); }
+  100% {
+    opacity: 1;
+    color: rgb(34, 211, 238);
+    text-shadow:
+      1px 0 0 rgba(59, 130, 246, 0.25),
+      -1px 0 0 rgba(103, 232, 249, 0.25),
+      0 0 8px rgba(34, 211, 238, 0.7),
+      0 0 18px rgba(34, 211, 238, 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hologram-letter {
+    animation: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    filter: none;
+    text-shadow: 0 0 8px rgba(34, 211, 238, 0.7), 0 0 18px rgba(34, 211, 238, 0.35);
+  }
+}

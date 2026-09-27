@@ -1,0 +1,11 @@
+# === Dépendances / builds ===
+node_modules/
+dist/
+
+# === Fichiers privés ===
+admin_panel.html
+
+# === Secrets ===
+.env
+.env.*
+cookies.txt

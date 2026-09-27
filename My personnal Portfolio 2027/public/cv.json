@@ -1,0 +1,53 @@
+{
+  "name": "Thierry RAMANITRA",
+  "title": "Développeur Fullstack & Creative Coder",
+  "summary": "Développeur passionné avec une expertise dans la création d'applications web modernes et performantes. Spécialisé dans l'écosystème JavaScript (React, Next.js, Node.js), je m'efforce de combiner code propre et design soigné pour offrir des expériences utilisateur exceptionnelles.",
+  "experiences": [
+    {
+      "role": "Développeur Fullstack Senior",
+      "company": "TechSolutions Inc.",
+      "period": "2021 - Présent",
+      "description": [
+        "Architecture et développement d'applications SaaS complexes.",
+        "Mentorat de développeurs juniors et mise en place de bonnes pratiques.",
+        "Optimisation des performances : réduction du temps de chargement de 40%."
+      ]
+    },
+    {
+      "role": "Développeur Web",
+      "company": "Creative Agency",
+      "period": "2019 - 2021",
+      "description": [
+        "Développement de sites vitrines et e-commerce pour divers clients.",
+        "Intégration de designs pixel-perfect à partir de maquettes Figma.",
+        "Maintenance et évolution de projets existants."
+      ]
+    }
+  ],
+  "skills": {
+    "frontend": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "HTML5/CSS3"
+    ],
+    "backend": [
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Prisma",
+      "Git",
+      "Docker",
+      "AWS"
+    ]
+  },
+  "education": [
+    {
+      "degree": "Master en Ingénierie Informatique",
+      "school": "Université de Technologie",
+      "period": "2017 - 2019"
+    }
+  ]
+}

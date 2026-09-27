@@ -1,0 +1,59 @@
+# Node / Vite
+node_modules/
+dist/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vite cache
+.vite/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# OS & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Build outputs
+/build/
+/public/build/
+
+# Sass cache
+.sass-cache/
+*.css.map
+*.sass.cache
+
+# Temp files
+*.log
+*.tmp
+*.temp
+
+# Kali-specific (si tu fais du pentest dans le même dossier)
+*.pcap
+*.cap
+*.burp
+*.zapy
+*.txt.bak
+*.bak
+*.old

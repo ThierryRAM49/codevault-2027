@@ -1,0 +1,22 @@
+# === Dépendances / builds ===
+node_modules/
+dist/
+
+# === Données locales sensibles ===
+data/
+
+# === Secrets ===
+.env
+.env.*
+*.enc
+*.key
+*.pem
+cookies.txt
+
+# === Logs / OS / IDE ===
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*~

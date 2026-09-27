@@ -1,0 +1,23 @@
+body {
+    display: grid;
+    place-items: center;
+    height: 90vh;
+    margin: 0;
+    background-color: #1a1a1a;
+}
+
+.animated-button {
+    background-color: #0ff;
+    color: #000;
+    border: none;
+    padding: 20px 40px;
+    font-size: 1.5em;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animated-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
+}

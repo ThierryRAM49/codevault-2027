@@ -1,0 +1,80 @@
+[
+  {
+    "id": "daw-modulaire",
+    "title": "DAW Modulaire (Electron)",
+    "description": "Station audio numérique légère pour compositeurs. Export WAV/MIDI, support VST, interface fluide.",
+    "tech": [
+      "Electron",
+      "Node.js",
+      "Web Audio API",
+      "TypeScript"
+    ],
+    "category": "Audio & musique"
+  },
+  {
+    "id": "sequenceur-ia",
+    "title": "Séquenceur IA (Electron)",
+    "description": "Génère des patterns rythmiques via algorithmes simples. Idéal pour beatmakers.",
+    "tech": [
+      "JavaScript",
+      "Electron",
+      "Tone.js"
+    ],
+    "category": "Audio & musique"
+  },
+  {
+    "id": "scanner-wifi",
+    "title": "Scanner Wi-Fi Centres Commerciaux",
+    "description": "Détecte les réseaux mal configurés, rogue APs, et failles IoT (caméras IP).",
+    "tech": [
+      "Kali Linux",
+      "Python",
+      "Nmap",
+      "Aircrack-ng"
+    ],
+    "category": "Cybersécurité"
+  },
+  {
+    "id": "audit-cameras",
+    "title": "Audit Automatisé Caméras IP",
+    "description": "Script d'audit de sécurité pour systèmes de vidéosurveillance (ports ouverts, mots de passe faibles).",
+    "tech": [
+      "Bash",
+      "Metasploit",
+      "Wireshark"
+    ],
+    "category": "Cybersécurité"
+  },
+  {
+    "id": "devops-selecteur",
+    "title": "DEVOPS — Sélecteur de plateforme IA",
+    "description": "Outil d'analyse d'idée d'app qui recommande la meilleure plateforme de développement.",
+    "tech": [
+      "React",
+      "Vite"
+    ],
+    "category": "Développement web"
+  },
+  {
+    "id": "codevaultai",
+    "title": "CodeVaultAI",
+    "description": "Coffre-fort de snippets de code avec éditeur Monaco, analyse, auto-fix et assistant IA.",
+    "category": "Développement web",
+    "tech": [
+      "PHP/Symfony",
+      "IndexedDB"
+    ]
+  },
+  {
+    "id": "securishield",
+    "title": "SécuriShield",
+    "description": "Dashboard de réponse à incident cybersécurité : rôles admin/visiteur (JWT), détection dynamique de menaces, actions de neutralisation/isolement, journal d'audit exportable en CSV et lien de connexion sécurisé.",
+    "category": "Cybersécurité",
+    "tech": [
+      "Electron",
+      "React",
+      "Express",
+      "JWT"
+    ]
+  }
+]

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thierry RAMANITRA | Développeur Fullstack</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --text: #e6edf3;
+      --accent: #58a6ff;
+      --card: #161b22;
+      --border: #30363d;
+      --green: #238636;
+      --purple: #a855f7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #8b949e;
+      margin-bottom: 1rem;
+    }
+
+    .tags {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      background: var(--card);
+      padding: 0.4rem 0.9rem;
+      border-radius: 2rem;
+      font-size: 0.85rem;
+      border: 1px solid var(--border);
+      color: var(--green);
+    }
+
+    section {
+      margin: 3rem 0;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .project-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--purple);
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: #8b949e;
+      margin-bottom: 1rem;
+    }
+
+    .tech-stack {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+    }
+
+    .tech {
+      background: rgba(88, 166, 255, 0.1);
+      color: var(--accent);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+    }
+
+    .links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      justify-content: center;
+    }
+
+    .btn {
+      background: var(--accent);
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn:hover {
+      background: #1f6feb;
+      transform: scale(1.05);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: var(--card);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: #8b949e;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      .tags { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <h1>Thierry RAMANITRA</h1>
+      <p class="subtitle">Développeur Full-Stack • Compositeur • Pentester</p>
+      <p>Stage 4 semaines : <strong>16 mars → 13 avril 2025</strong> | Disponible pour CDI</p>
+      <div class="tags">
+        <span class="tag">Electron.js</span>
+        <span class="tag">Kali Linux</span>
+        <span class="tag">Cybersécurité</span>
+        <span class="tag">Musique & Code</span>
+        <span class="tag">Autodidacte 20 ans</span>
+      </div>
+    </header>
+
+    <!-- Projets -->
+    <section>
+      <h2>Mes Projets Clés</h2>
+      <div class="projects">
+
+        <div class="project-card">
+          <h3 class="project-title">DAW Modulaire (Electron)</h3>
+          <p class="project-desc">Station audio numérique légère pour compositeurs. Export WAV/MIDI, support VST, interface fluide.</p>
+          <div class="tech-stack">
+            <span class="tech">Electron</span>
+            <span class="tech">Node.js</span>
+            <span class="tech">Web Audio API</span>
+            <span class="tech">TypeScript</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3 class="project-title">Séquenceur IA (Electron)</h3>
+          <p class="project-desc">Génère des patterns rythmiques via algorithmes simples. Idéal pour beatmakers.</p>
+          <div class="tech-stack">
+            <span class="tech">JavaScript</span>
+            <span class="tech">Electron</span>
+            <span class="tech">Tone.js</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3 class="project-title">Scanner Wi-Fi Centres Commerciaux</h3>
+          <p class="project-desc">Détecte les réseaux mal configurés, rogue APs, et failles IoT (caméras IP).</p>
+          <div class="tech-stack">
+            <span class="tech">Kali Linux</span>
+            <span class="tech">Python</span>
+            <span class="tech">Nmap</span>
+            <span class="tech">Aircrack-ng</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3 class="project-title">Audit Automatisé Caméras IP</h3>
+          <p class="project-desc">Script d’audit de sécurité pour systèmes de vidéosurveillance (ports ouverts, mots de passe faibles).</p>
+          <div class="tech-stack">
+            <span class="tech">Bash</span>
+            <span class="tech">Metasploit</span>
+            <span class="tech">Wireshark</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section style="text-align: center;">
+      <h2>Me Contacter</h2>
+      <div class="links">
+        <a href="mailto:riad-design@gmx.com" class="btn">📧 Email</a>
+        <a href="https://github.com/votrepseudo" class="btn" target="_blank">🐙 GitHub</a>
+        <a href="https://linkedin.com/in/votrepseudo" class="btn btn-secondary" target="_blank">💼 LinkedIn</a>
+      </div>
+      <p style="margin-top: 1.5rem; color: #8b949e;">
+        <strong>Stage disponible :</strong> 16 mars → 13 avril 2025<br>
+        <strong>Embauche possible :</strong> CDI / Alternance / Freelance
+      </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      &copy; 2025 Thierry RAMANITRA • Portfolio développé en HTML/CSS pur • Hébergé sur Netlify
+    </footer>
+
+  </div>
+</body>
+</html>

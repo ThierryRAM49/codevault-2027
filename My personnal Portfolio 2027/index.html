@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEV PRO - Mon Portfolio Ultime</title>
+    <link rel="stylesheet" href="/src/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style>
+        /* Styles importés depuis Mon-Profil-PRO.html et Mon-CV-Pro.html */
+        #profil, #cv {
+            padding-top: 100px; /* Pour ne pas être caché par la barre de navigation */
+            padding-bottom: 50px;
+            max-height: 100vh; /* Hauteur maximale de la section */
+            overflow-y: auto; /* Ajoute une barre de défilement si nécessaire */
+            box-sizing: border-box; /* Inclut le padding dans la hauteur totale */
+        }
+
+
+        :root {
+          --bg: #0d1117;
+          --text: #e6edf3;
+          --accent: #58a6ff;
+          --card: #161b22;
+          --border: #30363d;
+          --green: #238636;
+          --purple: #a855f7;
+          --gray: #8b949e;
+        }
+
+        /* Styles du Profil */
+        #profil .subtitle { font-size: 1.2rem; color: #8b949e; margin-bottom: 1rem; }
+        #profil .tags { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+        #profil .tag { background: var(--card); padding: 0.4rem 0.9rem; border-radius: 2rem; font-size: 0.85rem; border: 1px solid var(--border); color: var(--green); }
+        #profil h2 { font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--accent); position: relative; display: inline-block; }
+        #profil h2::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 50px; height: 3px; background: var(--accent); }
+        #profil .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        #profil .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+        #profil .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        #profil .project-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--purple); }
+        #profil .project-desc { font-size: 0.95rem; color: #8b949e; margin-bottom: 1rem; }
+        #profil .tech-stack { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.8rem; }
+        #profil .tech { background: rgba(88, 166, 255, 0.1); color: var(--accent); padding: 0.25rem 0.6rem; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+        #profil .links { display: flex; gap: 1rem; margin-top: 1.5rem; justify-content: center; }
+        #profil .btn { background: var(--accent); color: white; padding: 0.7rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+        #profil .btn:hover { background: #1f6feb; transform: scale(1.05); }
+        #profil .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
+        #profil .btn-secondary:hover { background: var(--card); }
+
+        /* Styles du CV */
+        #cv .container-cv { max-width: 900px; margin: 0 auto; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        #cv header { background: linear-gradient(135deg, var(--accent), var(--purple)); color: white; padding: 2.5rem 2rem; text-align: center; }
+        #cv h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+        #cv .subtitle { font-size: 1.2rem; opacity: 0.9; margin-bottom: 1rem; }
+        #cv .contact { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.95rem; }
+        #cv .contact a { color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        #cv .contact a:hover { text-decoration: underline; }
+        #cv main { padding: 2rem; }
+        #cv section { margin-bottom: 2rem; }
+        #cv h2 { font-size: 1.5rem; color: var(--accent); margin-bottom: 1rem; position: relative; padding-bottom: 0.5rem; }
+        #cv h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 3px; background: var(--accent); }
+        #cv .timeline { position: relative; padding-left: 2rem; }
+        #cv .timeline::before { content: ''; position: absolute; left: 0.5rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+        #cv .entry { position: relative; margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        #cv .entry::before { content: ''; position: absolute; left: -0.75rem; top: 0.35rem; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; border: 3px solid var(--card); }
+        #cv .entry h3 { font-size: 1.1rem; color: var(--purple); margin-bottom: 0.3rem; }
+        #cv .entry .meta { font-size: 0.9rem; color: var(--green); margin-bottom: 0.5rem; font-weight: 600; }
+        #cv .entry p { font-size: 0.95rem; color: var(--gray); }
+        #cv .skills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.8rem; }
+        #cv .skill { background: rgba(88, 166, 255, 0.15); color: var(--accent); padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; border: 1px solid rgba(88, 166, 255, 0.3); }
+        #cv .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+        #cv .project { background: rgba(22, 27, 34, 0.8); padding: 1rem; border-radius: 10px; border: 1px solid var(--border); }
+        #cv .project h3 { font-size: 1.05rem; color: var(--purple); margin-bottom: 0.4rem; }
+        #cv .tech { font-size: 0.8rem; color: var(--green); font-family: 'JetBrains Mono', monospace; }
+        #cv .availability { background: linear-gradient(90deg, #238636, #2ea043); color: white; padding: 1rem; border-radius: 10px; text-align: center; font-weight: 600; margin: 1.5rem 0; font-size: 1.1rem; }
+        #cv footer { text-align: center; padding: 1.5rem; color: var(--gray); font-size: 0.85rem; border-top: 1px solid var(--border); }
+        @media print {
+          body { padding: 0; background: white; color: black; }
+          #cv .container-cv { border: none; box-shadow: none; border-radius: 0; }
+          #cv header { background: #1f6feb !important; }
+          #cv a { color: blue; text-decoration: underline; }
+          .no-print { display: none; }
+        }
+
+        .main-tab-button, .code-tab-button {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.2s ease-in-out;
+        }
+        .main-tab-button.active, .code-tab-button.active {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 10px var(--primary);
+        }
+        .code-tabs {
+            border-bottom: 1px solid var(--border);
+        }
+        .code-editor-body {
+            flex-grow: 1;
+            position: relative;
+        }
+        .code-editor-body textarea {
+            width: 100%;
+            height: 100%;
+            background: #0d1117;
+            color: #c9d1d9;
+            border: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+            padding: 15px;
+            resize: none;
+            line-height: 1.5;
+        }
+        .modal-footer {
+            padding: 15px;
+            background: #0d0d0d;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        #update-project-btn {
+            background: var(--green);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #update-project-message {
+            margin: 0;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <video class="video-bg" autoplay loop muted playsinline>
+        <source src="/src/assets/videos/ro.mp4" type="video/mp4">
+    </video>
+
+    <nav class="nav">
+        <div class="logo">DEVPRO</div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu">
+            <a href="#home">Accueil</a>
+            <a href="#profil">Profil</a>
+            <a href="#portfolio">Projets</a>
+            <a href="#cv">CV</a>
+            <a href="#contact">Contact</a>
+            <a href="#add-project">Ajouter un Projet</a>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="page container" style="display:grid; place-items:center; text-align:center; height:100vh;">
+            <div>
+                <h1 style="font-size:4em; font-weight:900;">
+                  <span style="color: #f0f;"> DEV PRO Projet réaliser par Thierry</span> RAMANITRA
+                </h1>
+                <p style="font-size:1em; margin:30px 0; text-align: center;">Flexbox + Grid + Bash + Vidéo MP4 = GOD MODE</p>
+                <a href="#portfolio" class="cta-button" style="background:var(--primary); color:#000; padding:20px 50px; border-radius:50px; text-decoration:none; font-size:1.5em;">
+                    Voir mes projets
+                </a>
+            </div>
+        </section>
+
+        <section id="profil" class="page container" style="display:none;">
+            <!-- Contenu de Mon-Profil-PRO.html -->
+            <header style="text-align: center; padding: 3rem 0;">
+              <h1>Thierry RAMANITRA</h1>
+              <p class="subtitle">Développeur Full-Stack • Compositeur • Pentester</p>
+              <p>Stage 4 semaines : <strong>16 mars → 13 avril 2025</strong> | Disponible pour CDI</p>
+              <div class="tags">
+                <span class="tag">Electron.js</span>
+                <span class="tag">Kali Linux</span>
+                <span class="tag">Cybersécurité</span>
+                <span class="tag">Musique & Code</span>
+                <span class="tag">Autodidacte 20 ans</span>
+              </div>
+            </header>
+            <section>
+              <h2>Mes Projets Clés</h2>
+              <div class="projects">
+                <div class="project-card">
+                  <h3 class="project-title">DAW Modulaire (Electron)</h3>
+                  <p class="project-desc">Station audio numérique légère pour compositeurs. Export WAV/MIDI, support VST, interface fluide.</p>
+                  <div class="tech-stack">
+                    <span class="tech">Electron</span> <span class="tech">Node.js</span> <span class="tech">Web Audio API</span> <span class="tech">TypeScript</span>
+                  </div>
+                </div>
+                <div class="project-card">
+                  <h3 class="project-title">Séquenceur IA (Electron)</h3>
+                  <p class="project-desc">Génère des patterns rythmiques via algorithmes simples. Idéal pour beatmakers.</p>
+                  <div class="tech-stack">
+                    <span class="tech">JavaScript</span> <span class="tech">Electron</span> <span class="tech">Tone.js</span>
+                  </div>
+                </div>
+                <div class="project-card">
+                  <h3 class="project-title">Scanner Wi-Fi Centres Commerciaux</h3>
+                  <p class="project-desc">Détecte les réseaux mal configurés, rogue APs, et failles IoT (caméras IP).</p>
+                  <div class="tech-stack">
+                    <span class="tech">Kali Linux</span> <span class="tech">Python</span> <span class="tech">Nmap</span> <span class="tech">Aircrack-ng</span>
+                  </div>
+                </div>
+                <div class="project-card">
+                  <h3 class="project-title">Audit Automatisé Caméras IP</h3>
+                  <p class="project-desc">Script d’audit de sécurité pour systèmes de vidéosurveillance (ports ouverts, mots de passe faibles).</p>
+                  <div class="tech-stack">
+                    <span class="tech">Bash</span> <span class="tech">Metasploit</span> <span class="tech">Wireshark</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section style="text-align: center;">
+              <h2>Me Contacter</h2>
+              <div class="links">
+                <a href="mailto:riad-design@gmx.com" class="btn">📧 Email</a>
+                <a href="https://github.com/votrepseudo" class="btn" target="_blank">🐙 GitHub</a>
+                <a href="https://linkedin.com/in/Thierry Ramanitra" class="btn btn-secondary" target="_blank">💼 LinkedIn</a>
+              </div>
+            </section>
+            <!-- Fin du contenu importé -->
+        </section>
+
+        <section id="portfolio" class="page container" style="display:none;">
+            <h1 style="font-size:3em; margin:80px 0; text-align:center;">Mes Projets</h1>
+            <div class="portfolio">
+                <!-- 50 cartes générées automatiquement plus bas -->
+            </div>
+        </section>
+        <section id="cv" class="page" style="display:none;">
+            <!-- Contenu de Mon-CV-Pro.html -->
+            <div class="container-cv">
+                <header>
+                  <h1>Thierry RAMANITRA</h1>
+                  <p class="subtitle">Développeur Full-Stack • Compositeur • Spécialiste Cybersécurité</p>
+                  <div class="contact">
+                    <a href="mailto:riad-design@gmx.com"><i class="fas fa-envelope"></i>Me contacter</a>
+                    <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i> github.com</a>
+                    <a href="https://linkedin.com/in/Thierry Ramanitra" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com</a>
+                    <a href="tel:+33606433600"><i class="fas fa-phone"></i> 06 04 43 36 00</a>
+                  </div>
+                </header>
+                <main>
+                  <div class="availability">
+                    🎯 STAGE 4 SEMAINES : 16 mars → 13 avril 2025<br>
+                    ✅ DISPONIBLE POUR CDI / ALTERNANCE / FREELANCE DÈS FIN DE FORMATION
+                  </div>
+                  <section>
+                    <h2>Formation</h2>
+                    <div class="timeline">
+                      <div class="entry">
+                        <h3>Développeur Web & Web Mobile</h3>
+                        <div class="meta">[Nom de l’organisme] • En cours</div>
+                        <p>Full-stack, responsive design, PHP/MySQL, JavaScript, Git, sécurité web (OWASP).</p>
+                      </div>
+                      <div class="entry">
+                        <h3>Autodidacte en programmation</h3>
+                        <div class="meta">Depuis 2004 • +20 ans d’expérience personnelle</div>
+                        <p>Langages : C, Java, Python, JS, PHP • Frameworks : Electron, Node.js • Outils : Kali Linux, Metasploit</p>
+                      </div>
+                    </div>
+                  </section>
+                  <section>
+                    <h2>Projets Clés</h2>
+                    <div class="projects-grid">
+                      <div class="project"><h3>DAW Modulaire (Electron)</h3><p>Station audio open-source pour compositeurs. Export WAV/MIDI, VST.</p><p class="tech">Electron • Node.js • Web Audio API</p></div>
+                      <div class="project"><h3>Séquenceur Rythmique IA</h3><p>Génération automatique de beats via algorithmes.</p><p class="tech">JavaScript • Tone.js • Electron</p></div>
+                      <div class="project"><h3>Scanner Wi-Fi Centres Commerciaux</h3><p>Détection rogue APs, failles IoT, réseaux mal configurés.</p><p class="tech">Kali Linux • Python • Nmap • Aircrack-ng</p></div>
+                      <div class="project"><h3>Audit Caméras IP Automatisé</h3><p>Scan de ports, mots de passe faibles, vulnérabilités.</p><p class="tech">Bash • Metasploit • Wireshark</p></div>
+                    </div>
+                  </section>
+                  <section>
+                    <h2>Compétences Techniques</h2>
+                    <div class="skills">
+                      <span class="skill">HTML/CSS</span><span class="skill">JavaScript</span><span class="skill">Node.js</span><span class="skill">Electron</span><span class="skill">PHP/MySQL</span><span class="skill">React</span><span class="skill">Git</span><span class="skill">Kali Linux</span><span class="skill">Python</span><span class="skill">Bash</span><span class="skill">Nmap</span><span class="skill">Metasploit</span><span class="skill">Wireshark</span><span class="skill">OWASP</span><span class="skill">Sécurité IoT</span>
+                    </div>
+                  </section>
+                  <section>
+                    <h2>Centres d'intérêt</h2>
+                    <p>🎵 <strong>Musicien-compositeur</strong> (MAO, piano, synthétiseurs) • 🎹 Création d’outils pour artistes • 🔐 Pentesting éthique • 🧠 IA appliquée à la musique</p>
+                  </section>
+                </main>
+                <footer>CV généré en HTML/CSS • Imprimable • Mis à jour le 4 novembre 2025</footer>
+            </div>
+            <!-- Fin du contenu importé -->
+        </section>
+        <section id="contact" class="page container" style="display:none;">
+            <h1 style="font-size:3em; margin:80px 0; text-align:center;">Contactez-moi</h1>
+            <form class="contact-form">
+                <label for="name">Nom</label>
+                <input type="text" id="name" placeholder="Votre nom" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Votre email" required>
+                <label for="message">Message</label>
+                <textarea id="message" rows="8" placeholder="Votre message" required></textarea>
+                <button type="submit">Envoyer</button>
+            </form>
+        </section>
+    </main>
+
+    <section id="add-project" class="page container" style="display:none;">
+        <h1 style="font-size:2em; margin:80px 0; text-align:center;">Ajouter un Nouveau Projet</h1>
+        <form id="add-project-form" class="contact-form">
+            <label for="project-name">Nom du Projet (ex: projet-51)</label>
+            <input type="text" id="project-name" placeholder="Nom du Projet (ex: mon-super-projet)" required>
+
+            <label for="html-code">Code HTML (index.html)</label>
+            <textarea id="html-code" placeholder="<!DOCTYPE html>
+<html lang=&quot;fr&quot;>
+<head>
+    <meta charset=&quot;UTF-8&quot;>
+    <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+    <title>Mon Super Projet</title>
+    <link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;>
+</head>
+<body>
+    <h1>Bienvenue sur mon super projet !</h1>
+    <script src=&quot;script.js&quot;></script>
+</body>
+</html>" rows="10"></textarea>
+
+            <label for="css-code">Code CSS (style.css)</label>
+            <textarea id="css-code" placeholder="body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #282c34;
+    color: white;
+}" rows="10"></textarea>
+
+            <label for="js-code">Code JavaScript (script.js)</label>
+            <textarea id="js-code" placeholder="console.log('Projet chargé !');
+
+document.querySelector('h1').addEventListener('click', () => {
+    alert('Hello from JavaScript!');
+});" rows="10"></textarea>
+
+            <button type="submit">Créer le Projet</button>
+            <p id="add-project-message" style="text-align: center; margin-top: 20px;"></p>
+        </form>
+    </section>
+
+    <!-- Fenêtre Modale pour l'aperçu des projets -->
+    <div id="project-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-header">
+                <h2 id="modal-title">Titre du Projet</h2>
+            </div>
+            <div class="modal-tabs">
+                <button class="main-tab-button active" data-tab="preview">Aperçu</button>
+                <button class="main-tab-button" data-tab="code">Éditeur de Code</button>
+            </div>
+            <div class="modal-body">
+                <div id="preview-content" class="main-tab-content active">
+                    <iframe id="project-iframe" src="" frameborder="0"></iframe>
+                </div>
+                <div id="code-content" class="main-tab-content" style="display:none; flex-direction: column; height: 100%;">
+                    <div class="modal-tabs code-tabs">
+                        <button class="code-tab-button active" data-code-tab="html">HTML</button>
+                        <button class="code-tab-button" data-code-tab="css">CSS</button>
+                        <button class="code-tab-button" data-code-tab="js">JS</button>
+                    </div>
+                    <div class="code-editor-body">
+                        <textarea id="html-code-editor" class="code-tab-content active" data-code-lang="html"></textarea>
+                        <textarea id="css-code-editor" class="code-tab-content" data-code-lang="css" style="display:none;"></textarea>
+                        <textarea id="js-code-editor" class="code-tab-content" data-code-lang="js" style="display:none;"></textarea>
+                    </div>
+                     <div class="modal-footer">
+                        <button id="update-project-btn">Mettre à jour le projet</button>
+                        <p id="update-project-message" style="text-align: center; margin-top: 10px;"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 - Créé par Thierry RAMANITRA - DEVOPS • <a href="hhttps://github.com/ThierryRAM49/" style="color:var(--primary);">GitHub</a></p>
+    </footer>
+
+    <script src="/src/js/main.js"></script>
+</html>

@@ -1,0 +1,89 @@
+# === Environnements Python ===
+venv/
+env/
+venv3/
+__pycache__/
+*.pyc
+.python-version
+
+# === Fichiers générés par pip/pipx ===
+pip-selfcheck.json
+.installed.cfg
+*.egg
+
+# === Dossier de données locales (licences, configs) ===
+data/
+*.enc
+*.key
+!.gitkeep  # Garder ce fichier pour initialiser le dossier vide
+
+# === Fichiers audio temporaires et sorties ===
+input/
+output/
+temp/
+*.wav
+*.mp3
+*.flac
+*.mid
+*.midi
+*.ogg
+*.aac
+
+# === Modèles IA (si stockés localement) ===
+# Décommente si tu ne veux pas versionner les modèles
+# resources/models/*
+!resources/models/.gitkeep  # Pour garder le dossier
+
+# === Logs et caches ===
+logs/
+*.log
+.cache/
+.DS_Store
+Thumbs.db
+
+# === Node.js / Electron ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.yarn/
+
+# === Éditeurs et IDE ===
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# === Système ===
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# === Builds Electron ===
+dist/
+release/
+build/
+out/
+*.exe
+*.dmg
+*.AppImage
+*.zip
+*.tar.xz
+
+# === Fichiers temporaires système ===
+*~
+.nfs*
+
+# === Variables d'environnement (si jamais utilisées) ===
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
