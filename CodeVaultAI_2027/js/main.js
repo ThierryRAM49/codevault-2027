@@ -695,6 +695,36 @@ const App = () => {
     localStorage.removeItem('cvai-token');
   };
 
+  const handleResetAll = async () => {
+    if (userRole !== 'admin') return;
+    const ok = window.confirm(
+      "⚠️ Réinitialiser la base ?\n\n" +
+      "• Les snippets ET les tokens seront supprimés\n" +
+      "• Une sauvegarde automatique sera créée\n" +
+      "• Un NOUVEAU token admin sera généré\n\n" +
+      "Continuer ?"
+    );
+    if (!ok) return;
+    try {
+      const res = await window.electronAPI.resetAll();
+      if (res && res.success) {
+        setSnippets([]);
+        setUserRole('admin');
+        localStorage.setItem('cvai-token', res.token);
+        window.alert(
+          "✅ Base réinitialisée.\n\n" +
+          "Nouveau token admin :\n" + res.token + "\n\n" +
+          "Sauvegarde : " + res.backup
+        );
+        loadData();
+      } else {
+        window.alert("❌ Échec du reset : " + (res && res.error ? res.error : 'inconnu'));
+      }
+    } catch (e) {
+      window.alert("❌ Erreur : " + e.message);
+    }
+  };
+
   const addSnippet = async () => {
     if (!newTitle.trim()) return;
     try {
@@ -991,6 +1021,9 @@ const App = () => {
       React.createElement('div', { className: 'flex gap-3 flex-wrap items-center' }, [
         // LOGOUT BUTTON
         React.createElement('button', { onClick: handleLogout, className: 'border border-red-500/30 bg-red-900/10 text-red-400 hover:bg-red-500/20 px-3 py-2 rounded-lg font-bold text-xs transition-all backdrop-blur-sm', title: 'Déconnexion' }, '🔓 LOGOUT'),
+
+        // RESET DATABASE (admin, avec backup + nouveau token)
+        userRole === 'admin' && React.createElement('button', { onClick: handleResetAll, className: 'border border-red-500/60 bg-red-900/20 text-red-300 hover:bg-red-500/30 px-3 py-2 rounded-lg font-bold text-xs transition-all backdrop-blur-sm', title: 'Réinitialiser la base (backup auto + nouveau token admin)' }, '🧹 RESET'),
 
         // PROJETS LINKS
         React.createElement('button', { onClick: () => window.electronAPI.openExternal('https://portfolio.riad-design.cloud/'), className: 'border border-cyan-500/50 bg-cyan-900/10 text-cyan-300 hover:bg-cyan-500/20 px-4 py-2 rounded-lg font-bold text-sm transition-all backdrop-blur-sm', title: 'Mon Portfolio' }, '👤 PORTFOLIO'),

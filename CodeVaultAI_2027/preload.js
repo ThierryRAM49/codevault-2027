@@ -28,4 +28,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getTokens: () => ipcRenderer.invoke('auth-get-tokens'),
   revokeToken: (id) => ipcRenderer.invoke('auth-revoke-token', id),
   openAdminPanel: () => ipcRenderer.invoke('open-admin-panel'),
+
+  // Maintenance
+  resetAll: () => ipcRenderer.invoke('db-reset-all'),
 });

@@ -367,6 +367,33 @@ app.whenReady().then(() => {
     return false;
   });
 
+  // RESET DATABASE (backup + clear snippets & tokens + nouveau token admin)
+  ipcMain.handle('db-reset-all', async () => {
+    const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const backupPath = path.join(app.getPath('userData'), `codevault-backup-${stamp}.db`);
+    try {
+      fs.copyFileSync(dbPath, backupPath);
+    } catch (e) {
+      return { success: false, error: 'Backup impossible: ' + e.message };
+    }
+    return new Promise((resolve) => {
+      db.serialize(() => {
+        db.run('DELETE FROM snippets');
+        db.run('DELETE FROM access_tokens', (err) => {
+          if (err) { resolve({ success: false, error: err.message }); return; }
+          const crypto = require('crypto');
+          const newToken = `admin_${crypto.randomBytes(4).toString('hex')}`;
+          db.run("INSERT INTO access_tokens (token, role, is_active) VALUES (?, 'admin', 1)", [newToken], (e2) => {
+            if (e2) { resolve({ success: false, error: e2.message }); return; }
+            db.run("DELETE FROM sqlite_sequence WHERE name IN ('snippets','access_tokens')", () => {
+              resolve({ success: true, token: newToken, backup: backupPath });
+            });
+          });
+        });
+      });
+    });
+  });
+
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
