@@ -482,6 +482,8 @@ const LandingPage = () => {
   const [code, setCode] = React.useState(DEMO_EXAMPLES.JS);
   const [findings, setFindings] = React.useState([]);
   const [notice, setNotice] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [requestMsg, setRequestMsg] = React.useState('');
 
   const findingsRows = (items, cls, icon) => (items || []).map((f, i) =>
     React.createElement('p', { key: cls + i, className: cls }, `${icon} Ligne ${f.line}: ${f.message}`));
@@ -515,6 +517,20 @@ const LandingPage = () => {
     setNotice('✨ Code reformaté.');
   };
 
+  const requestAccess = (e) => {
+    if (e) e.preventDefault();
+    const addr = email.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr)) { setRequestMsg("⚠️ Merci d'entrer un email valide."); return; }
+    const subject = "Demande d'accès à CodeVaultAI";
+    const body = `Bonjour,\n\nJe souhaite obtenir un accès à CodeVaultAI.\n\nEmail : ${addr}\n\nMerci !`;
+    window.location.href = `mailto:riad-design@gmx.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setRequestMsg("✅ Votre client e-mail va s'ouvrir — envoyez le message pour valider votre demande.");
+  };
+  const startTrial = () => {
+    const el = document.getElementById('demo');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
   const linkCls = 'border border-cyan-500/50 bg-cyan-900/10 text-cyan-300 hover:bg-cyan-500/20 px-4 py-2 rounded-lg font-bold text-sm transition-all backdrop-blur-sm inline-flex items-center';
 
   return React.createElement('div', { className: 'p-6 min-h-screen' }, [
@@ -530,8 +546,9 @@ const LandingPage = () => {
           React.createElement(HologramLogo, { key: 'l', text: 'CodeVaultAI' })
         ])
       ]),
-      React.createElement('p', { className: 'text-center text-cyan-200/70 mt-3 mb-10 font-mono text-sm tracking-widest uppercase' }, 'Le coffre-fort de vos snippets de code'),
-      React.createElement('div', { className: 'bg-black/30 backdrop-blur-md border border-cyan-500/15 rounded-2xl p-6 mb-8' }, [
+      React.createElement('p', { className: 'text-center text-cyan-200/70 mt-3 mb-2 font-mono text-sm tracking-widest uppercase' }, 'Le coffre-fort de vos snippets de code'),
+      React.createElement('p', { className: 'text-center text-cyan-300 font-bold text-sm mb-10' }, '🚀 Rejoignez les premiers développeurs à essayer CodeVaultAI'),
+      React.createElement('div', { id: 'demo', className: 'bg-black/30 backdrop-blur-md border border-cyan-500/15 rounded-2xl p-6 mb-8' }, [
         React.createElement('h2', { className: 'text-xl font-bold text-white mb-2' }, '🧪 Essayez en direct'),
         React.createElement('p', { className: 'text-sm text-cyan-200/60 mb-4' }, "Le vrai moteur d'analyse de CodeVaultAI — sans compte, sans envoi au serveur."),
         React.createElement('div', { className: 'flex items-center gap-3 mb-3' }, [
@@ -556,6 +573,22 @@ const LandingPage = () => {
           notice && React.createElement('p', { key: 'n', className: 'text-green-300' }, notice),
           findings
         ])
+      ]),
+      React.createElement('div', { className: 'bg-black/30 backdrop-blur-md border border-cyan-500/25 rounded-2xl p-6 mb-8 text-center' }, [
+        React.createElement('h2', { className: 'text-xl font-bold text-white mb-2' }, "Accéder à l'outil"),
+        React.createElement('p', { className: 'text-sm text-gray-400 mb-4' }, "Entrez votre email pour envoyer une demande d'accès. Une fois approuvée, vous recevrez un lien de connexion."),
+        React.createElement('form', { onSubmit: requestAccess, className: 'flex flex-wrap gap-3 justify-center mb-2' }, [
+          React.createElement('input', {
+            key: 'email', type: 'email', value: email, required: true,
+            onChange: (e) => { setEmail(e.target.value); setRequestMsg(''); },
+            placeholder: 'vous@exemple.com',
+            className: 'flex-1 min-w-[240px] bg-black/50 border border-cyan-900/50 rounded-lg text-slate-200 px-4 py-3 text-sm focus:border-cyan-400 outline-none'
+          }),
+          React.createElement('button', { key: 'submit', type: 'submit', className: 'px-5 py-3 rounded-lg font-bold text-sm text-white bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500' }, "Demander l'accès")
+        ]),
+        requestMsg && React.createElement('p', { className: 'text-xs text-cyan-300 mb-3' }, requestMsg),
+        React.createElement('p', { className: 'text-xs text-gray-500 mb-4' }, "Votre email sert uniquement à vous envoyer ce lien de connexion."),
+        React.createElement('button', { type: 'button', onClick: startTrial, className: 'px-4 py-2 rounded-lg font-semibold text-sm border border-amber-500/50 text-amber-300 hover:bg-amber-500/10' }, '👀 Essai rapide (1 min, lecture seule, sans email)')
       ]),
       React.createElement('p', { className: 'text-center text-sm text-cyan-200/50' }, "🔒 L'accès complet (coffre, éditeur Monaco, assistant IA) se fait via l'application de bureau.")
     ])
