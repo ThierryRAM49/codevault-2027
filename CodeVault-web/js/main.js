@@ -523,8 +523,8 @@ const LandingPage = () => {
         React.createElement('a', { key: 'p', href: 'https://portfolio.riad-design.cloud/', target: '_blank', rel: 'noopener', className: linkCls }, '👤 MON PORTFOLIO →'),
         React.createElement('a', { key: 'd', href: 'https://devops.riad-design.cloud/', target: '_blank', rel: 'noopener', className: linkCls }, '🛠️ OUTIL DEVOPS →')
       ]),
-      React.createElement('h1', { className: 'text-5xl font-black flex items-center gap-3 justify-center' }, [
-        React.createElement('img', { key: 'e', src: './assets/icon.png', alt: 'CodeVaultAI', className: 'w-14 h-14 rounded-2xl' }),
+      React.createElement('h1', { className: 'text-5xl font-black flex flex-col items-center gap-2' }, [
+        React.createElement('img', { key: 'e', src: './assets/icon.png', alt: 'CodeVaultAI', className: 'w-16 h-16 rounded-2xl' }),
         React.createElement(HologramLogo, { key: 'l', text: 'CodeVaultAI' })
       ]),
       React.createElement('p', { className: 'text-center text-cyan-200/70 mt-3 mb-10 font-mono text-sm tracking-widest uppercase' }, 'Le coffre-fort de vos snippets de code'),
@@ -1134,7 +1134,7 @@ const App = () => {
     // Header
     React.createElement('div', { className: 'flex flex-wrap items-center justify-between mb-8 gap-6 relative z-10' }, [
       React.createElement('div', {}, [
-        React.createElement('h1', { className: 'text-5xl font-black flex items-center gap-3' }, [
+        React.createElement('h1', { className: 'text-5xl font-black flex flex-col items-start gap-2' }, [
           React.createElement('img', { key: 'emoji', src: './assets/icon.png', alt: 'CodeVaultAI', className: 'w-14 h-14 rounded-2xl' }),
           React.createElement(HologramLogo, { key: 'logo', text: 'CodeVaultAI' })
         ]),
