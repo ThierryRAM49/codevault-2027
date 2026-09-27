@@ -621,8 +621,8 @@ const App = () => {
   const [chatMessages, setChatMessages] = React.useState([]);
   const [showAiSettings, setShowAiSettings] = React.useState(false);
   const [aiKey, setAiKey] = React.useState(() => localStorage.getItem('cvai-ai-key') || '');
-  const [aiBase, setAiBase] = React.useState(() => localStorage.getItem('cvai-ai-base') || 'https://api.openai.com');
-  const [aiModel, setAiModel] = React.useState(() => localStorage.getItem('cvai-ai-model') || 'gpt-4o-mini');
+  const [aiBase, setAiBase] = React.useState(() => localStorage.getItem('cvai-ai-base') || 'https://api.studio.nebius.ai');
+  const [aiModel, setAiModel] = React.useState(() => localStorage.getItem('cvai-ai-model') || 'Qwen/Qwen2.5-Coder-32B-Instruct');
   const chatEndRef = React.useRef(null);
 
   // Drag & Drop
@@ -1137,8 +1137,14 @@ const App = () => {
         ])
       ]),
       showAiSettings && React.createElement('div', { className: 'p-3 border-b border-cyan-500/30 space-y-2 bg-black/30' }, [
-        React.createElement('p', { key: 'h', className: 'text-[11px] text-cyan-200/70' }, 'Utilisez votre propre clé API (stockée en local, jamais envoyée au serveur).'),
-        React.createElement('input', { key: 'k', type: 'password', value: aiKey, onChange: (e) => setAiKey(e.target.value), placeholder: 'Clé API (ex: sk-...)', className: 'w-full p-2 bg-black/50 text-white rounded text-xs border border-cyan-900 focus:border-cyan-500 outline-none' }),
+        React.createElement('p', { key: 'h', className: 'text-[11px] text-cyan-200/70' }, 'Utilisez votre propre clé API (Nebius AI Studio, OpenAI, Groq…). Stockée en local, jamais envoyée au serveur.'),
+        React.createElement('div', { key: 'presets', className: 'flex flex-wrap gap-1' },
+          [['Nebius', 'https://api.studio.nebius.ai', 'Qwen/Qwen2.5-Coder-32B-Instruct'],
+           ['OpenAI', 'https://api.openai.com', 'gpt-4o-mini'],
+           ['Groq', 'https://api.groq.com/openai', 'llama-3.3-70b-versatile'],
+           ['OpenRouter', 'https://openrouter.ai/api', 'deepseek/deepseek-chat']]
+            .map(([label, base, model]) => React.createElement('button', { key: label, type: 'button', onClick: () => { setAiBase(base); setAiModel(model); }, className: 'px-2 py-1 rounded border border-cyan-700/50 text-cyan-300 hover:bg-cyan-500/20 text-[10px]' }, label))),
+        React.createElement('input', { key: 'k', type: 'password', value: aiKey, onChange: (e) => setAiKey(e.target.value), placeholder: 'Clé API (Nebius, OpenAI…)', className: 'w-full p-2 bg-black/50 text-white rounded text-xs border border-cyan-900 focus:border-cyan-500 outline-none' }),
         React.createElement('input', { key: 'b', type: 'text', value: aiBase, onChange: (e) => setAiBase(e.target.value), placeholder: 'Base URL (sans /v1, ex: https://api.openai.com)', className: 'w-full p-2 bg-black/50 text-white rounded text-xs border border-cyan-900 focus:border-cyan-500 outline-none' }),
         React.createElement('input', { key: 'm', type: 'text', value: aiModel, onChange: (e) => setAiModel(e.target.value), placeholder: 'Modèle (ex: gpt-4o-mini)', className: 'w-full p-2 bg-black/50 text-white rounded text-xs border border-cyan-900 focus:border-cyan-500 outline-none' }),
         React.createElement('button', { key: 's', onClick: saveAiKey, className: 'w-full py-2 rounded bg-cyan-600/80 hover:bg-cyan-500 text-white text-xs font-bold' }, 'Enregistrer')

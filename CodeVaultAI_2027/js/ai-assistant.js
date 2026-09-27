@@ -32,6 +32,13 @@ class CodeVaultAI {
     // N'est utilisé qu'en dernier recours, si aucune IA locale n'est trouvée.
     this.anthropicFallbackConfigured = typeof window !== 'undefined' && window.CODEVAULT_AI_FALLBACK === true;
 
+    // Clé API personnelle de l'utilisateur (stockée localement, jamais envoyée
+    // au serveur). Provider cloud par défaut : Nebius AI Studio (API
+    // OpenAI-compatible) — voir aussi OpenAI, Groq, OpenRouter.
+    this.userKey = (localStorage.getItem('cvai-ai-key') || '').trim();
+    this.userBase = (localStorage.getItem('cvai-ai-base') || 'https://api.studio.nebius.ai').replace(/\/+$/, '');
+    this.userModel = (localStorage.getItem('cvai-ai-model') || 'Qwen/Qwen2.5-Coder-32B-Instruct').trim();
+
     // Détecter une IA locale disponible
     this.detectLocalAI();
   }
@@ -42,6 +49,14 @@ class CodeVaultAI {
    * Anthropic s'il est configuré côté serveur.
    */
   async detectLocalAI() {
+    if (this.userKey) {
+      const label = this.userBase.includes('nebius') ? 'Nebius AI Studio' : 'Clé API perso';
+      this.activeProvider = { id: 'user', label, baseUrl: this.userBase, model: this.userModel, api: 'openai', key: this.userKey };
+      this.ollamaModel = this.userModel;
+      this.ollamaAvailable = true;
+      console.log(`🔑 ${label} — Laetitia utilise votre clé (${this.userModel}).`);
+      return;
+    }
     const results = await Promise.allSettled(this.providers.map(p => this.probeProvider(p)));
     const found = results.find(r => r.status === 'fulfilled' && r.value);
 
@@ -59,6 +74,25 @@ class CodeVaultAI {
       this.ollamaAvailable = false;
       console.log('ℹ️ Aucune IA locale détectée (Ollama, LM Studio...) - mode local uniquement');
     }
+  }
+
+  // Configure la clé API personnelle de l'utilisateur (stockée localement).
+  setUserKey(key, base, model) {
+    this.userKey = (key || '').trim();
+    if (base) this.userBase = String(base).replace(/\/+$/, '');
+    if (model) this.userModel = String(model).trim();
+    try {
+      localStorage.setItem('cvai-ai-key', this.userKey);
+      localStorage.setItem('cvai-ai-base', this.userBase);
+      localStorage.setItem('cvai-ai-model', this.userModel);
+    } catch (e) { /* quota / mode privé */ }
+    this.detectLocalAI();
+    return this.activeProvider;
+  }
+
+  // Nebius AI Studio (API OpenAI-compatible) — provider cloud recommandé.
+  useNebius(key, model) {
+    return this.setUserKey(key, 'https://api.studio.nebius.ai', model || 'Qwen/Qwen2.5-Coder-32B-Instruct');
   }
 
   async probeProvider(provider) {
@@ -352,9 +386,11 @@ ${code}`;
   }
 
   async askOpenAiCompatible(prompt) {
+    const headers = { 'Content-Type': 'application/json' };
+    if (this.activeProvider.key) headers['Authorization'] = `Bearer ${this.activeProvider.key}`;
     const response = await fetch(`${this.activeProvider.baseUrl}/v1/chat/completions`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify({
         model: this.activeProvider.model || 'local-model',
         messages: [{ role: 'user', content: prompt }],

@@ -35,8 +35,8 @@ class CodeVaultAI {
     // Clé API personnelle de l'utilisateur (stockée localement, jamais envoyée
     // au serveur). Si présente, prioritaire sur la détection automatique.
     this.userKey = (localStorage.getItem('cvai-ai-key') || '').trim();
-    this.userBase = (localStorage.getItem('cvai-ai-base') || 'https://api.openai.com').replace(/\/+$/, '');
-    this.userModel = (localStorage.getItem('cvai-ai-model') || 'gpt-4o-mini').trim();
+    this.userBase = (localStorage.getItem('cvai-ai-base') || 'https://api.studio.nebius.ai').replace(/\/+$/, '');
+    this.userModel = (localStorage.getItem('cvai-ai-model') || 'Qwen/Qwen2.5-Coder-32B-Instruct').trim();
 
     // Détecter une IA locale disponible
     this.detectLocalAI();
@@ -49,10 +49,11 @@ class CodeVaultAI {
    */
   async detectLocalAI() {
     if (this.userKey) {
-      this.activeProvider = { id: 'user', label: 'Clé API perso', baseUrl: this.userBase, model: this.userModel, api: 'openai', key: this.userKey };
+      const label = this.userBase.includes('nebius') ? 'Nebius AI Studio' : 'Clé API perso';
+      this.activeProvider = { id: 'user', label, baseUrl: this.userBase, model: this.userModel, api: 'openai', key: this.userKey };
       this.ollamaModel = this.userModel;
       this.ollamaAvailable = true;
-      console.log('🔑 Clé API utilisateur détectée — Laetitia utilise votre clé.');
+      console.log(`🔑 ${label} — Laetitia utilise votre clé (${this.userModel}).`);
       return;
     }
     const results = await Promise.allSettled(this.providers.map(p => this.probeProvider(p)));
@@ -86,6 +87,11 @@ class CodeVaultAI {
     } catch (e) { /* quota / mode privé */ }
     this.detectLocalAI();
     return this.activeProvider;
+  }
+
+  // Nebius AI Studio (API OpenAI-compatible) — provider cloud recommandé.
+  useNebius(key, model) {
+    return this.setUserKey(key, 'https://api.studio.nebius.ai', model || 'Qwen/Qwen2.5-Coder-32B-Instruct');
   }
 
   async probeProvider(provider) {
