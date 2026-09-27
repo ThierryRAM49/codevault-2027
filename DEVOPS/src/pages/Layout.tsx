@@ -33,8 +33,13 @@ export function Layout() {
         <p>Les recommandations sont générées localement à partir de votre description — aucune donnée ne quitte votre navigateur.</p>
         <p className="mt-2">
           Une question, un projet à concrétiser ?{' '}
-          <a href={`mailto:${CONTACT_EMAIL}`} className="text-amber-300 hover:underline">
-            {CONTACT_EMAIL}
+          <a
+            href="https://portfolio.riad-design.cloud/#contact"
+            target="_blank"
+            rel="noreferrer"
+            className="text-amber-300 hover:underline"
+          >
+            Page de contact du portfolio
           </a>
         </p>
       </footer>
