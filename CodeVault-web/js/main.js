@@ -595,7 +595,7 @@ const LandingPage = ({ onTrial }) => {
         ]),
         requestMsg && React.createElement('p', { className: 'text-xs text-cyan-300 mb-3' }, requestMsg),
         React.createElement('p', { className: 'text-xs text-gray-500 mb-4' }, "Votre email sert uniquement à vous envoyer ce lien de connexion."),
-        React.createElement('button', { type: 'button', onClick: startTrial, className: 'px-4 py-2 rounded-lg font-semibold text-sm border border-amber-500/50 text-amber-300 hover:bg-amber-500/10' }, '👀 Essai rapide (1 min, lecture seule, sans email)')
+        React.createElement('button', { type: 'button', onClick: startTrial, className: 'px-4 py-2 rounded-lg font-semibold text-sm border border-amber-500/50 text-amber-300 hover:bg-amber-500/10' }, '👀 Essai rapide (lecture seule, sans email)')
       ]),
       React.createElement('p', { className: 'text-center text-sm text-cyan-200/50' }, "🔒 L'accès complet (coffre, éditeur Monaco, assistant IA) se fait via l'application de bureau.")
     ])
