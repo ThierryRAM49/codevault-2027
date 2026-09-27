@@ -1,0 +1,20 @@
+# see https://symfony.com/doc/current/reference/configuration/framework.html
+framework:
+    secret: '%env(APP_SECRET)%'
+
+    # Note that the session will be started ONLY if you read or write from it.
+    # cookie_lifetime/gc_maxlifetime: 30 days, so the CodeVault admin session
+    # survives browser restarts instead of the PHP default (session cookie +
+    # 24min server-side GC), which was logging the admin out too fast.
+    session:
+        cookie_lifetime: 2592000
+        gc_maxlifetime: 2592000
+
+    #esi: true
+    #fragments: true
+
+when@test:
+    framework:
+        test: true
+        session:
+            storage_factory_id: session.storage.factory.mock_file

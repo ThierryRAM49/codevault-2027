@@ -1,0 +1,43 @@
+services:
+  php:
+    build: .
+    container_name: riad-php
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+      - ./logs:/var/log/symfony
+    networks:
+      - heyou_heyou-net
+    restart: unless-stopped
+
+  portfolio:
+    build: "./My personnal Portfolio 2027"
+    container_name: riad-portfolio
+    user: "1001:1001"
+    working_dir: /var/www/html
+    volumes:
+      - "./My personnal Portfolio 2027:/var/www/html"
+    networks:
+      - heyou_heyou-net
+    restart: unless-stopped
+
+  database:
+    image: mariadb:10.11
+    container_name: riad-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: riad_design
+      MYSQL_USER: riad_user
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - database_data:/var/lib/mysql
+    networks:
+      - heyou_heyou-net
+    restart: unless-stopped
+
+networks:
+  heyou_heyou-net:
+    external: true
+
+volumes:
+  database_data:
