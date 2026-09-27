@@ -1,5 +1,65 @@
 [
   {
+    "id": "codevault-2027",
+    "title": "CodeVault 2027",
+    "description": "Suite de développement sécurisée : coffre-fort de snippets (Electron + éditeur Monaco + base SQLite), analyse statique et auto-fix, assistant IA local, complété par un portail web public et une app serveur Symfony (accès par lien email).",
+    "tech": [
+      "Electron",
+      "React",
+      "Monaco",
+      "SQLite",
+      "PHP/Symfony"
+    ],
+    "category": "Développement web"
+  },
+  {
+    "id": "agentic-os",
+    "title": "Agentic OS 2026",
+    "description": "Plateforme d'orchestration multi-agents : unifie opencode, Hermes et ChatGPT/OpenAI dans un dashboard unique avec mémoire persistante (SQLite FTS5 + brain/), planificateur cron, 16+ skills, analytics de coûts, audit et sauvegardes.",
+    "tech": [
+      "Python",
+      "SQLite",
+      "MCP",
+      "JavaScript",
+      "opencode"
+    ],
+    "category": "IA & agents"
+  },
+  {
+    "id": "evorozen-apex",
+    "title": "Evorozen Apex 2026",
+    "description": "Édition « Apex » de la plateforme d'orchestration multi-agents : routing d'agents, skills évalués, mémoire partagée et outils de déploiement.",
+    "tech": [
+      "Python",
+      "SQLite",
+      "MCP",
+      "JavaScript"
+    ],
+    "category": "IA & agents"
+  },
+  {
+    "id": "tirage-tarot-2027",
+    "title": "Tirage Tarot de Marseille 2027",
+    "description": "Expérience interactive de tirage de tarot en 3D temps réel : rendu WebGL, shaders et effets, mains et caméra animées.",
+    "tech": [
+      "React",
+      "Vite",
+      "Three.js"
+    ],
+    "category": "3D & interactif"
+  },
+  {
+    "id": "test-tirage-v2",
+    "title": "Test Tirage-v2 2026",
+    "description": "Application locale d'analyse statistique et de génération de grilles (EuroMillions, Loto, Super/Grand Loto) à partir de tirages réels importés en CSV/Excel.",
+    "tech": [
+      "Python",
+      "FastAPI",
+      "Pandas"
+    ],
+    "category": "Data & analyse"
+  },
+  {
     "id": "daw-modulaire",
     "title": "DAW Modulaire (Electron)",
     "description": "Station audio numérique légère pour compositeurs. Export WAV/MIDI, support VST, interface fluide.",
@@ -54,16 +114,6 @@
       "Vite"
     ],
     "category": "Développement web"
-  },
-  {
-    "id": "codevaultai",
-    "title": "CodeVaultAI",
-    "description": "Coffre-fort de snippets de code avec éditeur Monaco, analyse, auto-fix et assistant IA.",
-    "category": "Développement web",
-    "tech": [
-      "PHP/Symfony",
-      "IndexedDB"
-    ]
   },
   {
     "id": "securishield",

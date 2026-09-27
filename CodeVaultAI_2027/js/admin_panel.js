@@ -66,6 +66,23 @@ window.revoke = async (id) => {
 btnCreateAdmin.onclick = () => generateToken('admin');
 btnCreateUser.onclick = () => generateToken('user');
 
+// === Reset complet de la base (backup auto + clear + nouveau token admin) ===
+const btnResetDb = document.getElementById('btn-reset-db');
+
+window.resetDatabase = async () => {
+    if (!confirm("⚠️ Réinitialiser TOUTE la base ?\n\n• snippets ET tokens supprimés\n• sauvegarde automatique créée\n• nouveau token admin généré\n\nContinuer ?")) return;
+    const res = await window.electronAPI.resetAll();
+    if (res && res.success) {
+        showNewToken(res.token);
+        loadTokens();
+        alert("✅ Base réinitialisée.\n\nNouveau token admin :\n" + res.token + "\n\nSauvegarde : " + res.backup);
+    } else {
+        alert("❌ Échec : " + (res && res.error ? res.error : 'inconnu'));
+    }
+};
+
+if (btnResetDb) btnResetDb.onclick = window.resetDatabase;
+
 // Copy on click
 tokenValueEl.onclick = () => {
     navigator.clipboard.writeText(tokenValueEl.textContent);
