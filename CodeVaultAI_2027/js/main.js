@@ -638,7 +638,8 @@ const App = () => {
     return React.createElement('div', { className: 'p-8 text-center bg-slate-900 min-h-screen flex flex-col items-center justify-center' }, [
       React.createElement('h1', { className: 'text-3xl font-bold mb-6 text-cyan-400 flex items-center justify-center gap-3' }, [
         React.createElement('img', { key: 'logo', src: './assets/icon.png', alt: 'CodeVaultAI', className: 'w-12 h-12 rounded-xl' }),
-        '🔐 CodeVaultAI_2027'
+        React.createElement('span', { key: 'lock', className: 'text-yellow-400', 'aria-hidden': 'true' }, '🔐'),
+        React.createElement('span', { key: 'title' }, 'CodeVaultAI_2027')
       ]),
       React.createElement('p', { className: 'text-gray-300 mb-6' }, 'Veuillez entrer votre Token d\'accès'),
       loginError && React.createElement('p', { className: 'text-red-500 mb-4 font-bold animate-pulse' }, loginError),
@@ -995,9 +996,10 @@ const App = () => {
     // Header
     React.createElement('div', { className: 'flex flex-wrap items-center justify-between mb-8 gap-6 relative z-10' }, [
       React.createElement('div', {}, [
-        React.createElement('h1', { className: 'text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] animate-pulse-slow flex items-center gap-3' }, [
+        React.createElement('h1', { className: 'text-5xl font-black drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] animate-pulse-slow flex items-center gap-3' }, [
           React.createElement('img', { key: 'logo', src: './assets/icon.png', alt: 'CodeVaultAI', className: 'w-14 h-14 rounded-2xl' }),
-          '🔐 CodeVaultAI'
+          React.createElement('span', { key: 'lock', className: 'text-yellow-400', 'aria-hidden': 'true' }, '🔐'),
+          React.createElement('span', { key: 'title', className: 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600' }, 'CodeVaultAI')
         ]),
         React.createElement('p', { className: 'text-cyan-200/70 mt-1 font-mono text-sm tracking-widest uppercase' }, 'Secure Neural Coding Environment 2027')
       ]),
