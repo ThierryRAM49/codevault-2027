@@ -94,6 +94,17 @@ class CodeVaultAI {
     return this.setUserKey(key, 'https://api.studio.nebius.ai', model || 'nvidia/Llama-3.1-Nemotron-70B-Instruct');
   }
 
+  // Liste les modèles du provider cloud (ex. Nebius AI Studio /v1/models).
+  async listModels(key, base) {
+    const k = (key || this.userKey || '').trim();
+    const b = (base || this.userBase || '').replace(/\/+$/, '');
+    if (!k) return [];
+    const res = await fetch(`${b}/v1/models`, { headers: { Authorization: `Bearer ${k}` } });
+    if (!res.ok) throw new Error('models ' + res.status);
+    const data = await res.json();
+    return (data.data || data.models || []).map(m => m.id || m.name).filter(Boolean).sort();
+  }
+
   async probeProvider(provider) {
     try {
       const response = await fetch(`${provider.baseUrl}${provider.probePath}`, {

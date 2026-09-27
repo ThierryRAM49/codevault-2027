@@ -416,6 +416,7 @@ const App = () => {
   const [aiKey, setAiKey] = React.useState(() => localStorage.getItem('cvai-ai-key') || '');
   const [aiBase, setAiBase] = React.useState(() => localStorage.getItem('cvai-ai-base') || 'https://api.studio.nebius.ai');
   const [aiModel, setAiModel] = React.useState(() => localStorage.getItem('cvai-ai-model') || 'nvidia/Llama-3.1-Nemotron-70B-Instruct');
+  const [aiModels, setAiModels] = React.useState([]);
   const chatEndRef = React.useRef(null);
 
   // Drag & Drop
@@ -952,6 +953,18 @@ const App = () => {
     setShowAiSettings(false);
   };
 
+  const loadAiModels = async () => {
+    try {
+      if (window.CodeVaultAI && window.CodeVaultAI.listModels) {
+        const list = await window.CodeVaultAI.listModels(aiKey, aiBase);
+        const nem = list.filter(m => /nemotron|nvidia/i.test(m));
+        const rest = list.filter(m => !/nemotron|nvidia/i.test(m));
+        setAiModels([...nem, ...rest]);
+        if (nem.length && !/nemotron|nvidia/i.test(aiModel)) setAiModel(nem[0]);
+      }
+    } catch (e) { setAiModels([]); }
+  };
+
   const renderChatPanel = () => {
     if (!showChat) return null;
     return React.createElement('div', { className: 'fixed bottom-4 right-4 w-80 bg-slate-900/90 backdrop-blur-xl rounded-xl shadow-[0_0_20px_rgba(6,182,212,0.3)] border border-cyan-500/30 z-50 flex flex-col' }, [
@@ -972,7 +985,12 @@ const App = () => {
             .map(([label, base, model]) => React.createElement('button', { key: label, type: 'button', onClick: () => { setAiBase(base); setAiModel(model); }, className: 'px-2 py-1 rounded border border-cyan-700/50 text-cyan-300 hover:bg-cyan-500/20 text-[10px]' }, label))),
         React.createElement('input', { key: 'k', type: 'password', value: aiKey, onChange: (e) => setAiKey(e.target.value), placeholder: 'Clé API (Nebius, OpenAI…)', className: 'w-full p-2 bg-black/50 text-white rounded text-xs border border-cyan-900 focus:border-cyan-500 outline-none' }),
         React.createElement('input', { key: 'b', type: 'text', value: aiBase, onChange: (e) => setAiBase(e.target.value), placeholder: 'Base URL (sans /v1)', className: 'w-full p-2 bg-black/50 text-white rounded text-xs border border-cyan-900 focus:border-cyan-500 outline-none' }),
-        React.createElement('input', { key: 'm', type: 'text', value: aiModel, onChange: (e) => setAiModel(e.target.value), placeholder: 'Modèle (ex: nvidia/Llama-3.1-Nemotron-70B-Instruct)', className: 'w-full p-2 bg-black/50 text-white rounded text-xs border border-cyan-900 focus:border-cyan-500 outline-none' }),
+        React.createElement('div', { key: 'mrow', className: 'flex gap-1' }, [
+          React.createElement('input', { key: 'm', type: 'text', value: aiModel, onChange: (e) => setAiModel(e.target.value), placeholder: 'Modèle (Nebius / Nemotron…)', className: 'flex-1 p-2 bg-black/50 text-white rounded text-xs border border-cyan-900 focus:border-cyan-500 outline-none' }),
+          React.createElement('button', { key: 'l', type: 'button', onClick: loadAiModels, className: 'px-2 py-1 rounded border border-cyan-700/50 text-cyan-300 hover:bg-cyan-500/20 text-[10px] whitespace-nowrap' }, 'Charger')
+        ]),
+        aiModels.length > 0 && React.createElement('select', { key: 'sel', value: aiModel, onChange: (e) => setAiModel(e.target.value), className: 'w-full p-2 bg-black/50 text-white rounded text-xs border border-cyan-900 focus:border-cyan-500 outline-none' },
+          aiModels.map(m => React.createElement('option', { key: m, value: m }, m))),
         React.createElement('button', { key: 's', onClick: saveAiKey, className: 'w-full py-2 rounded bg-cyan-600/80 hover:bg-cyan-500 text-white text-xs font-bold' }, 'Enregistrer')
       ]),
       React.createElement('div', { className: 'p-3 h-64 overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-cyan-900 scrollbar-track-transparent' }, [
