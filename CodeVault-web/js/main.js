@@ -624,6 +624,7 @@ const App = () => {
   const [aiBase, setAiBase] = React.useState(() => localStorage.getItem('cvai-ai-base') || 'https://api.studio.nebius.ai');
   const [aiModel, setAiModel] = React.useState(() => localStorage.getItem('cvai-ai-model') || 'nvidia/Llama-3.1-Nemotron-70B-Instruct');
   const [aiModels, setAiModels] = React.useState([]);
+  const [tavilyKey, setTavilyKey] = React.useState(() => localStorage.getItem('cvai-tavily-key') || '');
   const chatEndRef = React.useRef(null);
 
   // Drag & Drop
@@ -1124,6 +1125,9 @@ const App = () => {
     if (window.CodeVaultAI && window.CodeVaultAI.setUserKey) {
       window.CodeVaultAI.setUserKey(aiKey, aiBase, aiModel);
     }
+    if (window.CodeVaultAI && window.CodeVaultAI.setTavilyKey) {
+      window.CodeVaultAI.setTavilyKey(tavilyKey);
+    }
     setShowAiSettings(false);
   };
 
@@ -1165,6 +1169,7 @@ const App = () => {
         ]),
         aiModels.length > 0 && React.createElement('select', { key: 'sel', value: aiModel, onChange: (e) => setAiModel(e.target.value), className: 'w-full p-2 bg-black/50 text-white rounded text-xs border border-cyan-900 focus:border-cyan-500 outline-none' },
           aiModels.map(m => React.createElement('option', { key: m, value: m }, m))),
+        React.createElement('input', { key: 'tav', type: 'password', value: tavilyKey, onChange: (e) => setTavilyKey(e.target.value), placeholder: 'Clé Tavily (recherche web, optionnel)', className: 'w-full p-2 bg-black/50 text-white rounded text-xs border border-cyan-900 focus:border-cyan-500 outline-none' }),
         React.createElement('button', { key: 's', onClick: saveAiKey, className: 'w-full py-2 rounded bg-cyan-600/80 hover:bg-cyan-500 text-white text-xs font-bold' }, 'Enregistrer')
       ]),
       React.createElement('div', { className: 'p-3 h-64 overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-cyan-900 scrollbar-track-transparent' }, [

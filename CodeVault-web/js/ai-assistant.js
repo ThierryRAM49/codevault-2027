@@ -37,6 +37,8 @@ class CodeVaultAI {
     this.userKey = (localStorage.getItem('cvai-ai-key') || '').trim();
     this.userBase = (localStorage.getItem('cvai-ai-base') || 'https://api.studio.nebius.ai').replace(/\/+$/, '');
     this.userModel = (localStorage.getItem('cvai-ai-model') || 'nvidia/Llama-3.1-Nemotron-70B-Instruct').trim();
+    // Clé Tavily (recherche web en runtime pour Laetitia), stockée localement.
+    this.tavilyKey = (localStorage.getItem('cvai-tavily-key') || '').trim();
 
     // Détecter une IA locale disponible
     this.detectLocalAI();
@@ -103,6 +105,25 @@ class CodeVaultAI {
     if (!res.ok) throw new Error('models ' + res.status);
     const data = await res.json();
     return (data.data || data.models || []).map(m => m.id || m.name).filter(Boolean).sort();
+  }
+
+  // Clé Tavily (recherche web), stockée localement.
+  setTavilyKey(key) {
+    this.tavilyKey = (key || '').trim();
+    try { localStorage.setItem('cvai-tavily-key', this.tavilyKey); } catch (e) { /* quota */ }
+    return this.tavilyKey;
+  }
+
+  // Appel runtime à l'API Tavily (recherche web augmentant les réponses de Laetitia).
+  async webSearch(query, maxResults = 5) {
+    if (!this.tavilyKey) return null;
+    const res = await fetch('https://api.tavily.com/search', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ api_key: this.tavilyKey, query, max_results: maxResults, search_depth: 'basic', include_answer: true })
+    });
+    if (!res.ok) throw new Error('Tavily ' + res.status);
+    return res.json();
   }
 
   async probeProvider(provider) {
@@ -450,8 +471,19 @@ ${code}`;
 
     // Si une IA locale est disponible et pas de réponse prédéfinie, l'utiliser
     if (!reply && this.ollamaAvailable) {
+      let webContext = '';
+      if (this.tavilyKey) {
+        try {
+          const s = await this.webSearch(userInput);
+          if (s) {
+            const lines = (s.results || []).slice(0, 5).map((r, i) => `[${i + 1}] ${r.title} — ${r.url}\n${(r.content || '').slice(0, 300)}`);
+            if (s.answer) lines.unshift(`Résumé: ${s.answer}`);
+            if (lines.length) webContext = `\n\nContexte web (Tavily):\n${lines.join('\n')}`;
+          }
+        } catch (e) { /* recherche indisponible, on continue sans */ }
+      }
       try {
-        reply = await this.askOllama(`Tu es Laetitia, une assistante IA pour développeurs. Réponds brièvement en français à: ${userInput}`);
+        reply = await this.askOllama(`Tu es Laetitia, une assistante IA pour développeurs. Réponds brièvement en français à: ${userInput}${webContext}`);
       } catch (e) {
         reply = `Bonne question : "${userInput}". Je réfléchis... mais mon module IA semble occupé. 🤔`;
       }
