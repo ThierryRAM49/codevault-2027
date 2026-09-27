@@ -525,7 +525,10 @@ const LandingPage = () => {
       ]),
       React.createElement('h1', { className: 'text-5xl font-black flex flex-col items-center gap-2' }, [
         React.createElement('img', { key: 'e', src: './assets/icon.png', alt: 'CodeVaultAI', className: 'w-16 h-16 rounded-2xl' }),
-        React.createElement(HologramLogo, { key: 'l', text: 'CodeVaultAI' })
+        React.createElement('span', { key: 't', className: 'flex items-center gap-2' }, [
+          '🔐',
+          React.createElement(HologramLogo, { key: 'l', text: 'CodeVaultAI' })
+        ])
       ]),
       React.createElement('p', { className: 'text-center text-cyan-200/70 mt-3 mb-10 font-mono text-sm tracking-widest uppercase' }, 'Le coffre-fort de vos snippets de code'),
       React.createElement('div', { className: 'bg-black/30 backdrop-blur-md border border-cyan-500/15 rounded-2xl p-6 mb-8' }, [
@@ -1136,7 +1139,10 @@ const App = () => {
       React.createElement('div', {}, [
         React.createElement('h1', { className: 'text-5xl font-black flex flex-col items-start gap-2' }, [
           React.createElement('img', { key: 'emoji', src: './assets/icon.png', alt: 'CodeVaultAI', className: 'w-14 h-14 rounded-2xl' }),
-          React.createElement(HologramLogo, { key: 'logo', text: 'CodeVaultAI' })
+          React.createElement('span', { key: 't', className: 'flex items-center gap-2' }, [
+            '🔐',
+            React.createElement(HologramLogo, { key: 'logo', text: 'CodeVaultAI' })
+          ])
         ]),
         React.createElement('p', { className: 'text-cyan-200/70 mt-1 font-mono text-sm tracking-widest uppercase' }, 'Secure Neural Coding Environment 2027')
       ]),
